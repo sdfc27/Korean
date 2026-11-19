@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Inter:wght@400;500;600&family=Jua&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
 <style>
 :root {
 --bg-paper: #FAF7F2;
@@ -19,8 +19,12 @@
 --accent-terra: #C66B4F;
 --accent-indigo: #4B5B76;
 }
+:root {
+--font-zh: 'LXGW WenKai TC', 'Noto Sans TC', sans-serif;
+--font-kr: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+}
 body {
-font-family: 'Inter', 'Noto Sans TC', sans-serif;
+font-family: var(--font-zh);
 background-color: var(--bg-paper);
 background-image: radial-gradient(#DFD7CB 0.85px, transparent 0.85px);
 background-size: 20px 20px;
@@ -31,7 +35,7 @@ color: var(--ink-main);
 font-family: 'Noto Serif TC', serif;
 }
 .kr {
-font-family: 'Noto Sans KR', sans-serif;
+font-family: var(--font-kr);
 }
 .card-paper {
 background: var(--bg-card);
@@ -91,6 +95,13 @@ touch-action: none;
 <svg class="w-4 h-4 text-[#9C948B] absolute left-3.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
 <input id="searchInput" type="search" placeholder="搜尋字母、注音、單字或中文..." class="w-full pl-9 pr-3.5 py-2 text-sm rounded-full border border-[#E2DAD0] bg-white/90 text-[#2B2623] placeholder-[#A8A096] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C66B4F]/30 focus:border-[#C66B4F]" />
 </div>
+<select id="fontSelect" aria-label="切換字型風格" class="px-3 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] focus:outline-none focus:ring-2 focus:ring-[#C66B4F]/30 cursor-pointer transition shadow-2xs">
+<option value="handnote">字型：文青手札</option>
+<option value="serif">字型：典雅明體</option>
+<option value="round">字型：可愛圓體</option>
+<option value="plex">字型：極簡黑體</option>
+<option value="standard">字型：標準筆順</option>
+</select>
 <button id="speedToggleBtn" type="button" class="px-3 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] flex items-center gap-1 whitespace-nowrap transition shadow-2xs" title="切換發音語速">
 <span id="speedLabel">語速：慢 0.55x</span>
 </button>
@@ -1485,6 +1496,30 @@ renderConsonants();
 renderBatchim();
 renderClassification();
 renderVocab();
+}
+// ==================== FONT SWITCHER ====================
+const FONT_PRESETS = {
+handnote: { zh: "'LXGW WenKai TC', 'Noto Sans TC', sans-serif", kr: "'Gowun Dodum', 'Noto Sans KR', sans-serif" },
+serif: { zh: "'Noto Serif TC', serif", kr: "'Gowun Batang', 'Noto Serif KR', serif" },
+round: { zh: "'Inter', 'Noto Sans TC', sans-serif", kr: "'Jua', 'Noto Sans KR', sans-serif" },
+plex: { zh: "'Inter', 'Noto Sans TC', sans-serif", kr: "'IBM Plex Sans KR', 'Noto Sans KR', sans-serif" },
+standard: { zh: "'Inter', 'Noto Sans TC', sans-serif", kr: "'Noto Sans KR', sans-serif" }
+};
+function applyFontPreset(key) {
+const p = FONT_PRESETS[key] || FONT_PRESETS.handnote;
+document.documentElement.style.setProperty('--font-zh', p.zh);
+document.documentElement.style.setProperty('--font-kr', p.kr);
+document.getElementById('fontSelect').value = key in FONT_PRESETS ? key : 'handnote';
+try { localStorage.setItem('eva_kr_font', key); } catch (e) {}
+}
+document.getElementById('fontSelect').addEventListener('change', e => {
+applyFontPreset(e.target.value);
+});
+try {
+const savedFont = localStorage.getItem('eva_kr_font') || 'handnote';
+applyFontPreset(savedFont);
+} catch (e) {
+applyFontPreset('handnote');
 }
 // Init
 saveBookmarks();
