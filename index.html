@@ -1,1407 +1,1495 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EVA 韓文手札｜母音・子音・終聲・七大分類</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-paper: #FAF7F2;
-      --bg-card: #FFFFFF;
-      --border-hair: #E6DFD5;
-      --ink-main: #2B2623;
-      --ink-muted: #78716C;
-      --accent-sage: #4A6B5D;
-      --accent-terra: #C66B4F;
-      --accent-indigo: #4B5B76;
-    }
-    body {
-      font-family: 'Inter', 'Noto Sans TC', sans-serif;
-      background-color: var(--bg-paper);
-      background-image: radial-gradient(#DFD7CB 0.85px, transparent 0.85px);
-      background-size: 20px 20px;
-      color: var(--ink-main);
-      -webkit-font-smoothing: antialiased;
-    }
-    .serif-title {
-      font-family: 'Noto Serif TC', serif;
-    }
-    .kr {
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-    .card-paper {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hair);
-      box-shadow: 0 2px 14px rgba(43, 38, 35, 0.035);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-    }
-    .card-paper:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(43, 38, 35, 0.07);
-      border-color: #D5CBBF;
-    }
-    .tab-btn {
-      color: #6B635B;
-      border-bottom: 2px solid transparent;
-      transition: all 0.18s ease;
-    }
-    .tab-btn:hover {
-      color: #2B2623;
-    }
-    .tab-btn.active {
-      color: #2B2623;
-      border-bottom-color: #C66B4F;
-      font-weight: 600;
-    }
-    .pill-btn {
-      color: #6B635B;
-      transition: all 0.15s ease;
-    }
-    .pill-btn.active {
-      background-color: #2B2623;
-      color: #FAF7F2;
-      box-shadow: 0 2px 6px rgba(43, 38, 35, 0.15);
-    }
-    canvas {
-      touch-action: none;
-    }
-    /* Custom subtle scrollbar */
-    ::-webkit-scrollbar { height: 6px; width: 6px; }
-    ::-webkit-scrollbar-thumb { background: #D6CEC2; border-radius: 999px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EVA 韓文手札｜母音・子音・終聲・七大分類</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+--bg-paper: #FAF7F2;
+--bg-card: #FFFFFF;
+--border-hair: #E6DFD5;
+--ink-main: #2B2623;
+--ink-muted: #78716C;
+--accent-sage: #4A6B5D;
+--accent-terra: #C66B4F;
+--accent-indigo: #4B5B76;
+}
+body {
+font-family: 'Inter', 'Noto Sans TC', sans-serif;
+background-color: var(--bg-paper);
+background-image: radial-gradient(#DFD7CB 0.85px, transparent 0.85px);
+background-size: 20px 20px;
+color: var(--ink-main);
+-webkit-font-smoothing: antialiased;
+}
+.serif-title {
+font-family: 'Noto Serif TC', serif;
+}
+.kr {
+font-family: 'Noto Sans KR', sans-serif;
+}
+.card-paper {
+background: var(--bg-card);
+border: 1px solid var(--border-hair);
+box-shadow: 0 2px 14px rgba(43, 38, 35, 0.035);
+transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.card-paper:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(43, 38, 35, 0.07);
+border-color: #D5CBBF;
+}
+.tab-btn {
+color: #6B635B;
+border-bottom: 2px solid transparent;
+transition: all 0.18s ease;
+}
+.tab-btn:hover {
+color: #2B2623;
+}
+.tab-btn.active {
+color: #2B2623;
+border-bottom-color: #C66B4F;
+font-weight: 600;
+}
+.pill-btn {
+color: #6B635B;
+transition: all 0.15s ease;
+}
+.pill-btn.active {
+background-color: #2B2623;
+color: #FAF7F2;
+box-shadow: 0 2px 6px rgba(43, 38, 35, 0.15);
+}
+canvas {
+touch-action: none;
+}
+/* Custom subtle scrollbar /
+::-webkit-scrollbar { height: 6px; width: 6px; }
+::-webkit-scrollbar-thumb { background: #D6CEC2; border-radius: 999px; }
+</style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- Top Header -->
-  <header class="sticky top-0 z-30 bg-[#FAF7F2]/92 backdrop-blur-md border-b border-[#E6DFD5]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4 pb-0 flex flex-col gap-3.5">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-3.5">
-          <div class="w-11 h-11 rounded-2xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-center font-bold text-xl kr shadow-sm tracking-tight">한</div>
-          <div>
-            <h1 class="text-lg sm:text-xl font-bold text-[#2B2623] serif-title tracking-wide">EVA 韓文課複習手札</h1>
-            <p class="text-xs text-[#78716C] mt-0.5">10/15 – 11/12 課堂講義與筆記系統化整理</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-2.5 w-full sm:w-auto">
-          <div class="relative flex-1 sm:w-64">
-            <svg class="w-4 h-4 text-[#9C948B] absolute left-3.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
-            <input id="searchInput" type="search" placeholder="搜尋字母、注音、單字或中文..." class="w-full pl-9 pr-3.5 py-2 text-sm rounded-full border border-[#E2DAD0] bg-white/90 text-[#2B2623] placeholder-[#A8A096] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C66B4F]/30 focus:border-[#C66B4F]" />
-          </div>
-          <button id="speedToggleBtn" type="button" class="px-3 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] flex items-center gap-1 whitespace-nowrap transition shadow-2xs" title="切換發音語速">
-            <span id="speedLabel">語速：慢 0.55x</span>
-          </button>
-          <button id="bookmarkFilterBtn" type="button" class="px-3.5 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] flex items-center gap-1.5 whitespace-nowrap transition shadow-2xs">
-            <svg class="w-3.5 h-3.5 text-[#C66B4F]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <span class="hidden sm:inline">待複習</span>
-            <span id="bookmarkCount" class="px-1.5 py-0.5 text-[11px] rounded-full bg-[#F4ECE4] text-[#9A4E36] font-semibold">0</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Clean Editorial Underline Tabs -->
-      <nav class="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar" aria-label="主要單元">
-        <button type="button" data-tab="vowels" class="tab-btn active py-2.5 text-sm whitespace-nowrap">一、母音 <span class="text-xs opacity-60 ml-0.5">21</span></button>
-        <button type="button" data-tab="consonants" class="tab-btn py-2.5 text-sm whitespace-nowrap">二、子音 <span class="text-xs opacity-60 ml-0.5">19</span></button>
-        <button type="button" data-tab="batchim" class="tab-btn py-2.5 text-sm whitespace-nowrap">三、終聲與雙收尾音</button>
-        <button type="button" data-tab="classification" class="tab-btn py-2.5 text-sm whitespace-nowrap">四、七種終聲分類</button>
-        <button type="button" data-tab="quiz" class="tab-btn py-2.5 text-sm whitespace-nowrap">隨堂測驗</button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7">
-    <!-- Bookmark Filter Banner -->
-    <div id="bookmarkBanner" class="hidden mb-6 p-3.5 rounded-2xl bg-[#FDF6EC] border border-[#EED9BD] flex items-center justify-between gap-3">
-      <div class="text-xs sm:text-sm text-[#7C5329] flex items-center gap-2">
-        <span class="font-semibold">僅顯示已收藏的「待複習」項目</span>
-        <span class="hidden sm:inline text-[#9A7248]">（點擊卡片右上角星號即可切換）</span>
-      </div>
-      <button id="clearBookmarkFilterBtn" type="button" class="text-xs font-medium px-3 py-1.5 rounded-full bg-white border border-[#E4CAA7] text-[#7C5329] hover:bg-[#FAF0E2] transition">顯示全部</button>
-    </div>
-
-    <!-- Section 1: Vowels -->
-    <section id="sec-vowels" class="space-y-7">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 01 · Vowels</span>
-          <h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">母音 (모음) — 10 基本 ＋ 11 複合</h2>
-          <p class="text-sm text-[#78716C] mt-1">點擊單字或喇叭圖示即可聆聽標準發音，點「筆順練習」可在方格畫布上描紅。</p>
-        </div>
-        <div class="flex items-center gap-1 bg-[#EFEAE2] p-1 rounded-full">
-          <button type="button" data-vfilter="all" class="pill-btn active px-3.5 py-1.5 rounded-full text-xs font-medium">全部 21</button>
-          <button type="button" data-vfilter="basic" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">基本 10</button>
-          <button type="button" data-vfilter="compound" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">複合 11</button>
-        </div>
-      </div>
-
-      <div id="vowelsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-      <!-- Special Callout: 의 3 rules & Kinship notes from 11/05 -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-2">
-        <div class="card-paper rounded-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-bold text-[#2B2623] serif-title text-base">課堂重點：「의」的三種發音規則</h3>
-            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EEF2F6] text-[#4B5B76] font-medium">11/05 筆記</span>
-          </div>
-          <div class="space-y-2.5 text-sm">
-            <div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
-              <div>
-                <span class="font-bold kr text-base text-[#4B5B76] mr-1.5">1. [의]</span>
-                <span class="text-[#575049]">位在第一個字：</span>
-                <span class="kr font-semibold text-[#2B2623]">의사</span>(醫生)、<span class="kr font-semibold text-[#2B2623]">의자</span>(椅子)、<span class="kr font-semibold text-[#2B2623]">의지</span>、<span class="kr font-semibold text-[#2B2623]">의외</span>
-              </div>
-              <button type="button" onclick="speakKr('의사, 의자')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
-              </button>
-            </div>
-            <div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
-              <div>
-                <span class="font-bold kr text-base text-[#4B5B76] mr-1.5">2. [이]</span>
-                <span class="text-[#575049]">非第一個字：</span>
-                <span class="kr font-semibold text-[#2B2623]">예의</span> <span class="text-[#78716C]">[예이]</span> (禮貌)
-              </div>
-              <button type="button" onclick="speakKr('예의')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
-              </button>
-            </div>
-            <div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
-              <div>
-                <span class="font-bold kr text-base text-[#4B5B76] mr-1.5">3. [에]</span>
-                <span class="text-[#575049]">助詞「的」：</span>
-                <span class="kr font-semibold text-[#2B2623]">나의</span> <span class="text-[#78716C]">[나에]</span>、<span class="kr font-semibold text-[#2B2623]">나라의</span> <span class="text-[#78716C]">[나라에]</span>
-              </div>
-              <button type="button" onclick="speakKr('나의, 나라의')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
-              </button>
-            </div>
-            <div class="p-4 rounded-xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-between gap-3">
-              <div>
-                <div class="text-[11px] text-[#B8AFA6] tracking-wide">一句話記住三個規則（民主主義的意義）</div>
-                <div class="font-bold kr text-base mt-0.5">민주주의의 의의 → [민주주이에 의이]</div>
-              </div>
-              <button type="button" onclick="speakKr('민주주의의 의의')" class="shrink-0 px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-medium transition">試聽</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-paper rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold text-[#2B2623] serif-title text-base">課堂單字補充：親屬稱謂與時間</h3>
-              <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EDF3F0] text-[#4A6B5D] font-medium">11/05 & 11/12</span>
-            </div>
-            <div class="grid grid-cols-2 gap-3 text-sm">
-              <div class="p-3.5 rounded-xl bg-[#FCF5F2] border border-[#F2DFD8]">
-                <div class="text-xs font-bold text-[#B5593D] mb-2">女生稱呼 (여자)</div>
-                <ul class="space-y-1.5 text-xs">
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">언니</b> 姐姐</span><button type="button" onclick="speakKr('언니')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">오빠</b> 哥哥</span><button type="button" onclick="speakKr('오빠')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">여동생</b> 妹妹</span><button type="button" onclick="speakKr('여동생')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">남동생</b> 弟弟</span><button type="button" onclick="speakKr('남동생')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
-                </ul>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#F3F6FA] border border-[#DDE4EE]">
-                <div class="text-xs font-bold text-[#4B5B76] mb-2">男生稱呼與時間</div>
-                <ul class="space-y-1.5 text-xs">
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">누나</b> 姐姐</span><button type="button" onclick="speakKr('누나')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">형</b> 哥哥</span><button type="button" onclick="speakKr('형')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">어제</b> 昨天</span><button type="button" onclick="speakKr('어제')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
-                  <li class="flex justify-between items-center"><span><b class="kr text-sm">오늘 / 내일</b> 今/明天</span><button type="button" onclick="speakKr('오늘, 내일')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] text-xs text-[#575049] flex flex-wrap gap-x-3 gap-y-1.5 items-center">
-            <span class="font-semibold text-[#2B2623]">11/12 單字：</span>
-            <button type="button" onclick="speakKr('지도')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">지도 地圖</button>
-            <button type="button" onclick="speakKr('커피')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">커피 咖啡</button>
-            <button type="button" onclick="speakKr('구두')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">구두 皮鞋</button>
-            <button type="button" onclick="speakKr('지하철')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">지하철 地鐵</button>
-            <button type="button" onclick="speakKr('사과')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">사과 蘋果/道歉</button>
-            <button type="button" onclick="speakKr('노래방')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">노래방 KTV</button>
-            <button type="button" onclick="speakKr('돼지')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">돼지 豬</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Consonants -->
-    <section id="sec-consonants" class="hidden space-y-7">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 02 · Consonants</span>
-          <h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">子音 (자음) — 14 基本 ＋ 5 雙子音</h2>
-          <p class="text-sm text-[#78716C] mt-1">對照「第一個字 (字首)」與「非第一個字 (字中/母音間)」發音差異，搭配氣流紙張測試練習。</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-1 bg-[#EFEAE2] p-1 rounded-full">
-          <button type="button" data-cfilter="all" class="pill-btn active px-3.5 py-1.5 rounded-full text-xs font-medium">全部 19</button>
-          <button type="button" data-cfilter="plain" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">基本平音 10</button>
-          <button type="button" data-cfilter="aspirated" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">激音/氣音 4</button>
-          <button type="button" data-cfilter="tense" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">硬音/雙子音 5</button>
-        </div>
-      </div>
-
-      <div id="consonantsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-      <!-- Paper Air Test Callout from 11/12 Handout -->
-      <div class="card-paper rounded-2xl p-6">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h3 class="font-bold text-[#2B2623] serif-title text-base">講義實戰：「拿一張紙放嘴巴前」三音對比練習</h3>
-          <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#FCF5F2] text-[#B5593D] font-medium">11/12 講義</span>
-        </div>
-        <p class="text-xs text-[#78716C] mb-4">平音（輕柔、紙不動） vs 激音/氣音（強氣流、紙會明顯飄動） vs 硬音/緊音（喉嚨憋氣彈出、接近國語四聲，紙不動）</p>
-        <div id="contrastGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
-      </div>
-    </section>
-
-    <!-- Section 3: Batchim -->
-    <section id="sec-batchim" class="hidden space-y-7">
-      <div>
-        <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 03 · Batchim</span>
-        <h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">終聲 / 收尾音 (받침) — 七個代表音與雙收尾音</h2>
-        <p class="text-sm text-[#78716C] mt-1">終聲收音要乾脆「把音吃掉」或用鼻音收尾。雙收尾音共 11 個，永遠只唸其中一邊的音。</p>
-      </div>
-
-      <div id="batchimGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-      <!-- Double Batchim Section -->
-      <div class="card-paper rounded-2xl p-6 space-y-5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h3 class="font-bold text-[#2B2623] serif-title text-lg">雙收尾音 (複收尾音 / 겹받침) — 11 種寫法</h3>
-            <p class="text-sm text-[#78716C] mt-0.5">黃金口訣：<span class="font-semibold text-[#4A6B5D]">先記住「唸右邊」的 3 個（ㄺ、ㄻ、ㄿ），其餘 8 個通通唸左邊。</span></p>
-          </div>
-          <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EDF3F0] text-[#4A6B5D] font-medium">11/12 講義 & 筆記</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div class="rounded-xl border border-[#D4E2DA] bg-[#F4F8F6] p-4">
-            <h4 class="font-bold text-[#355245] text-sm mb-3">唸「右邊」字母 (3 個必背)</h4>
-            <div id="doubleRightList" class="space-y-2.5"></div>
-          </div>
-          <div class="rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4">
-            <h4 class="font-bold text-[#2B2623] text-sm mb-3">唸「左邊」字母 (8 個)</h4>
-            <div id="doubleLeftList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-          </div>
-        </div>
-
-        <div class="pt-2">
-          <h4 class="font-bold text-[#2B2623] text-sm mb-3">講義終聲易混淆對比練習（點擊試聽）：</h4>
-          <div id="batchimPairsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: 7 Final Consonant Classification -->
-    <section id="sec-classification" class="hidden space-y-7">
-      <div>
-        <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 04 · 7 Categories</span>
-        <h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">各種終聲寫法，只有「七種終聲」的分類總表</h2>
-        <p class="text-sm text-[#78716C] mt-1">韓文共有 27 種終聲寫法（16 單收尾 ＋ 11 雙收尾；<span class="font-semibold text-[#B5593D]">ㄸ, ㅃ, ㅉ 絕不會當終聲</span>），但發音全部歸類為 7 個代表音。</p>
-      </div>
-
-      <div class="flex flex-wrap gap-2" id="classFilterPills"></div>
-      <div id="classificationCards" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
-
-      <!-- Summary Table -->
-      <div class="card-paper rounded-2xl overflow-hidden">
-        <div class="px-5 py-3.5 bg-[#2B2623] text-[#FAF7F2] flex items-center justify-between">
-          <h3 class="font-bold text-sm sm:text-base serif-title">27 種終聲寫法 → 7 大代表音對照一覽表</h3>
-          <span class="text-xs text-[#B8AFA6]">對照 11/12 講義</span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm text-left">
-            <thead class="bg-[#FAF7F2] text-[#78716C] border-b border-[#E6DFD5]">
-              <tr>
-                <th class="px-4 py-3 font-semibold">代表音 (7種)</th>
-                <th class="px-4 py-3 font-semibold">音標 / 近似收音</th>
-                <th class="px-4 py-3 font-semibold">單收尾音 (16種)</th>
-                <th class="px-4 py-3 font-semibold">雙收尾音 (11種)</th>
-                <th class="px-4 py-3 font-semibold">講義代表例字</th>
-              </tr>
-            </thead>
-            <tbody id="classTableBody" class="divide-y divide-[#F0EAE1]"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Quiz -->
-    <section id="sec-quiz" class="hidden space-y-7">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 05 · Practice</span>
-          <h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">隨堂複習測驗</h2>
-          <p class="text-sm text-[#78716C] mt-1">挑一個主題馬上測試自己的記憶，每題都會附上講義口訣解析。</p>
-        </div>
-        <div class="flex flex-wrap gap-1.5 bg-[#EFEAE2] p-1 rounded-full">
-          <button type="button" data-qmode="mixed" class="qmode-btn active px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#2B2623] text-[#FAF7F2]">綜合隨機</button>
-          <button type="button" data-qmode="batchim7" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">七種終聲</button>
-          <button type="button" data-qmode="double" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">雙收尾音</button>
-          <button type="button" data-qmode="consonant_pos" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">字首 vs 字中</button>
-        </div>
-      </div>
-
-      <div class="max-w-2xl mx-auto card-paper rounded-2xl p-6 sm:p-7">
-        <div class="flex items-center justify-between text-xs text-[#78716C] mb-5 pb-3 border-b border-[#F0EAE1]">
-          <span id="quizProgress">第 1 題 / 共 10 題</span>
-          <span id="quizScore" class="font-semibold text-[#4A6B5D]">得分：0</span>
-        </div>
-        <div id="quizBody" class="space-y-4"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-[#E6DFD5] bg-white/80 mt-14 py-5 px-4 sm:px-6 text-xs text-[#78716C]">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div>內容統整自 EVA 韓文課講義與筆記 (2026/10/15 – 11/12)，並整合公信力學習資源補充筆順與發音細節：</div>
-      <div class="flex flex-wrap gap-4">
-        <a href="https://urldefense.com/v3/__https://yeslearnkorean.com/korean-alphabet-guide-susu/__;!!AAkNMFMq5MQ!Yi51qfGz8KRThbHcwJjzJPppm-N7AXeANudzX0lVcx7R3j9YRx9qzu1jhwpG7VEi4GAKjSMu4o2vJxc$" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">蘇蘇的韓文手札 (40音)</a>
-        <a href="https://urldefense.com/v3/__https://yeslearnkorean.com/korean-double-batchim-guide/__;!!AAkNMFMq5MQ!Yi51qfGz8KRThbHcwJjzJPppm-N7AXeANudzX0lVcx7R3j9YRx9qzu1jhwpG7VEi4GAKjSMubR_vn10$" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">蘇蘇的韓文手札 (雙尾音)</a>
-        <a href="https://urldefense.com/v3/__https://freekoreanschool.com/learn/zh-tw/letter-writing__;!!AAkNMFMq5MQ!Yi51qfGz8KRThbHcwJjzJPppm-N7AXeANudzX0lVcx7R3j9YRx9qzu1jhwpG7VEi4GAKjSMuliM37UM$" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">Korean School 筆順</a>
-        <a href="https://urldefense.com/v3/__https://zh.wikipedia.org/zh-tw/**N__;5pyd6bKc6K-t6Z-z57O7!!AAkNMFMq5MQ!Yi51qfGz8KRThbHcwJjzJPppm-N7AXeANudzX0lVcx7R3j9YRx9qzu1jhwpG7VEi4GAKjSMuPvcTvdM$" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">維基百科韓語音系</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Stroke Order & Detail Modal -->
-  <div id="strokeModal" class="hidden fixed inset-0 z-50 bg-[#2B2623]/45 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-[#FAF7F2] border border-[#E6DFD5] rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-3.5">
-        <div class="flex items-center gap-3.5">
-          <div class="w-14 h-14 rounded-2xl bg-white border border-[#E6DFD5] flex items-center justify-center">
-            <span id="modalChar" class="kr text-4xl font-black text-[#2B2623]">ㅏ</span>
-          </div>
-          <div>
-            <h3 id="modalTitle" class="font-bold text-[#2B2623] text-lg serif-title">母音 ㅏ</h3>
-            <p id="modalSub" class="text-xs text-[#78716C] mt-0.5">英文：a ｜ 注音：ㄚ</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <button id="modalSpeakBtn" type="button" class="px-3.5 py-1.5 rounded-full bg-[#2B2623] text-[#FAF7F2] text-xs font-medium hover:bg-[#433C37] transition">朗讀發音</button>
-          <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-white border border-[#E6DFD5] hover:bg-[#EFEAE2] text-[#575049] text-sm font-semibold">✕</button>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl border border-[#E6DFD5] p-3.5 text-sm text-[#4A433D]">
-        <div class="font-semibold text-[#2B2623] text-xs mb-1">筆順寫法步驟（由上至下、由左至右）</div>
-        <p id="modalStrokeDesc" class="text-xs leading-relaxed text-[#575049]"></p>
-      </div>
-
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-medium text-[#78716C]">手寫描紅練習區（滑鼠或手指直接書寫）</span>
-          <button id="clearCanvasBtn" type="button" class="text-xs px-3 py-1 rounded-full bg-white border border-[#E2DAD0] hover:bg-[#EFEAE2] text-[#4A433D] font-medium">清除重寫</button>
-        </div>
-        <div class="relative mx-auto w-60 h-60 rounded-2xl border border-[#D6CEC2] bg-white overflow-hidden select-none shadow-inner">
-          <div id="canvasGuideChar" class="kr absolute inset-0 flex items-center justify-center text-[145px] font-bold text-[#EDE7DF] pointer-events-none select-none">ㅏ</div>
-          <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute left-1/2 top-0 bottom-0 border-l border-dashed border-[#E6DFD5]"></div>
-            <div class="absolute top-1/2 left-0 right-0 border-t border-dashed border-[#E6DFD5]"></div>
-          </div>
-          <canvas id="drawCanvas" width="240" height="240" class="relative z-10 w-full h-full cursor-crosshair"></canvas>
-        </div>
-      </div>
-
-      <div id="modalExtraTip" class="text-xs text-[#6B4F35] bg-[#FDF6EC] border border-[#EED9BD] rounded-2xl p-3.5 leading-relaxed"></div>
-    </div>
-  </div>
-
-  <script>
-    // ==================== DATA ====================
-    const VOWELS = [
-      {
-        id: 'v_a', char: 'ㅏ', type: 'basic', roma: 'a', zhuyin: 'ㄚ',
-        words: [{ kr: '아버지', mean: '爸爸' }, { kr: '오빠', mean: '哥哥(女生叫)' }, { kr: '사랑해', mean: '我愛你' }],
-        tip: '跟注音符號「ㄚ」很像，嘴巴自然張大、舌頭平放。字形一豎向右伸出（朝陽光明亮方向）。',
-        stroke: '共 2 畫：① 先寫左邊長直線（由上而下）；② 再寫中間短橫線（由左而右）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_ya', char: 'ㅑ', type: 'basic', roma: 'ya', zhuyin: 'ㄧㄚ',
-        words: [{ kr: '야구', mean: '棒球' }, { kr: '야채', mean: '蔬菜' }],
-        tip: '「ㅏ」多加一橫＝多一個「ㄧ」滑音，從「ㄧ」快速滑向「ㄚ」。',
-        stroke: '共 3 畫：① 先寫左邊長直線（上→下）；② 上短橫（左→右）；③ 下短橫（左→右）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_eo', char: 'ㅓ', type: 'basic', roma: 'eo', zhuyin: 'ㄛ (不圓唇)',
-        words: [{ kr: '어디', mean: '哪裡' }, { kr: '어머니', mean: '媽媽' }, { kr: '영어', mean: '英語' }, { kr: '먹었어요?', mean: '吃了嗎?' }],
-        tip: '筆記重點：跟注音符號「ㄛ」很像！但嘴型比「ㅏ」小且放鬆、不要嘟圓；唸「어」時把人中往直的方向拉長一點（區分 영어 vs 용어）。',
-        stroke: '共 2 畫：① 先寫左邊短橫線（由左而右）；② 再寫右邊長直線（由上而下）。',
-        source: '10/19 & 11/12 筆記'
-      },
-      {
-        id: 'v_yeo', char: 'ㅕ', type: 'basic', roma: 'yeo', zhuyin: 'ㄧㄛ',
-        words: [{ kr: '여자', mean: '女生' }, { kr: '여우', mean: '狐狸' }, { kr: '여동생', mean: '妹妹' }],
-        tip: '「ㅓ」多加一橫，先準備好「ㄧ」的嘴型再滑向放鬆的「ㅓ」。',
-        stroke: '共 3 畫：① 上短橫（左→右）；② 下短橫（左→右）；③ 右邊長直線（上→下）。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'v_o', char: 'ㅗ', type: 'basic', roma: 'o', zhuyin: 'ㄛ / ㄡ(嘴型固定)',
-        words: [{ kr: '오빠', mean: '哥哥' }, { kr: '소', mean: '牛' }, { kr: '도로', mean: '道路' }, { kr: '용어', mean: '用語' }],
-        tip: '筆記重點：跟注音「ㄛ」很像！嘴唇用力嘟成小圓形「O」固定不動，結尾不要滑成「ㄨ」。',
-        stroke: '共 2 畫：① 先寫上方短直線（由上而下）；② 再寫下方長橫線（由左而右）。',
-        source: '10/19 & 11/12 筆記'
-      },
-      {
-        id: 'v_yo', char: 'ㅛ', type: 'basic', roma: 'yo', zhuyin: 'ㄧㄡ(嘴型固定)',
-        words: [{ kr: '요리', mean: '料理' }, { kr: '더워요', mean: '好熱' }, { kr: '가요', mean: '去' }],
-        tip: '「ㅗ」多一豎，由「ㄧ」滑向圓唇固定的「ㅗ」，常出現在敬語句尾「-요」。',
-        stroke: '共 3 畫：① 左短豎（上→下）；② 右短豎（上→下）；③ 下方長橫線（左→右）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_u', char: 'ㅜ', type: 'basic', roma: 'u / wu', zhuyin: 'ㄨ',
-        words: [{ kr: '우유', mean: '牛奶' }, { kr: '누나', mean: '姐姐' }, { kr: '구두', mean: '皮鞋' }],
-        tip: '跟注音「ㄨ」一樣！像哭臉「ㅜㅜ」一樣把嘴唇嘟出去。',
-        stroke: '共 2 畫：① 先寫上方長橫線（由左而右）；② 再寫下方短直線（由上而下）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_yu', char: 'ㅠ', type: 'basic', roma: 'yu', zhuyin: 'ㄧㄨ',
-        words: [{ kr: '우유', mean: '牛奶' }, { kr: '뉴스', mean: '新聞' }],
-        tip: '網路表情「ㅠㅠ」(哭哭)，由「ㄧ」滑向嘟嘴的「ㅜ」。',
-        stroke: '共 3 畫：① 上方長橫線（左→右）；② 左短豎（上→下）；③ 右短豎（上→下）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_eu', char: 'ㅡ', type: 'basic', roma: 'eu', zhuyin: 'ㄜ / 台語「蚵仔煎的蚵」',
-        words: [{ kr: '으뜸', mean: '第一' }, { kr: '크다', mean: '大' }, { kr: '쓰다', mean: '寫/苦' }],
-        tip: '筆記重點：很像台語「蚵仔煎的蚵」、接近「ㄜ」的音！嘴角向兩側拉平（像假笑）、上下齒輕咬，不要嘟嘴。',
-        stroke: '共 1 畫：① 一條橫線（由左而右）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_i', char: 'ㅣ', type: 'basic', roma: 'i', zhuyin: 'ㄧ',
-        words: [{ kr: '비', mean: '雨' }, { kr: '언니', mean: '姐姐' }, { kr: '바지', mean: '褲子' }],
-        tip: '跟注音「ㄧ」、數字「1」幾乎一樣，嘴角向兩側拉開。',
-        stroke: '共 1 畫：① 一條直線（由上而下）。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_ae', char: 'ㅐ', type: 'compound', roma: 'ae', zhuyin: 'ㄝ(嘴張大)',
-        words: [{ kr: '사랑해', mean: '我愛你' }, { kr: '아내', mean: '太太' }, { kr: '개', mean: '狗' }],
-        tip: 'ㅏ + ㅣ 組成。現代韓語口語跟「ㅔ」幾乎同音，但傳統上「ㅐ」嘴巴張得比「ㅔ」大一點（約兩指寬）。',
-        stroke: '共 3 畫：① 左長豎；② 中短橫；③ 右長豎（由上而下）。',
-        source: '10/19 筆記 + 補充'
-      },
-      {
-        id: 'v_e', char: 'ㅔ', type: 'compound', roma: 'e', zhuyin: 'ㄝ(嘴放鬆)',
-        words: [{ kr: '어제', mean: '昨天' }, { kr: '네', mean: '是的' }, { kr: '세계', mean: '世界' }],
-        tip: 'ㅓ + ㅣ 組成。嘴角放鬆、張開度較「ㅐ」小，類似中文「耶」的後半段。',
-        stroke: '共 3 畫：① 左短橫；② 中長豎；③ 右長豎（由上而下）。',
-        source: '11/12 筆記 + 補充'
-      },
-      {
-        id: 'v_yae', char: 'ㅒ', type: 'compound', roma: 'yae', zhuyin: 'ㄧㄝ',
-        words: [{ kr: '얘기', mean: '故事/聊天' }, { kr: '얘', mean: '這孩子' }],
-        tip: 'ㅑ + ㅣ 組成。從短促的「ㄧ」滑向「ㅐ」，現代口語與「ㅖ」同音。',
-        stroke: '共 4 畫：① 左長豎；② 上短橫；③ 下短橫；④ 右長豎。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_ye', char: 'ㅖ', type: 'compound', roma: 'ye', zhuyin: 'ㄧㄝ',
-        words: [{ kr: '예의', mean: '禮貌' }, { kr: '예쁘다', mean: '漂亮' }, { kr: '시계', mean: '手錶' }],
-        tip: 'ㅕ + ㅣ 組成。先發「ㄧ」再滑向「ㅔ」。當前面有子音時（如 계）有時會簡讀成 [게]。',
-        stroke: '共 4 畫：① 上短橫；② 下短橫；③ 中長豎；④ 右長豎。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'v_wa', char: 'ㅘ', type: 'compound', roma: 'wa', zhuyin: 'ㄨㄚ',
-        words: [{ kr: '와우', mean: '哇嗚' }, { kr: '과일', mean: '水果' }, { kr: '사과', mean: '蘋果/道歉' }],
-        tip: 'ㅗ + ㅏ 組成。由圓唇「ㅗ」快速滑向張大嘴的「ㅏ」，就是中文驚嘆「哇！」。',
-        stroke: '共 4 畫：① 上短豎；② 下橫線；③ 右長豎；④ 右短橫。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_wae', char: 'ㅙ', type: 'compound', roma: 'wae', zhuyin: 'ㄨㄝ',
-        words: [{ kr: '왜요?', mean: '為什麼?' }, { kr: '돼지', mean: '豬' }],
-        tip: 'ㅗ + ㅐ 組成。現代韓語中「ㅙ、ㅚ、ㅞ」三個音幾乎相同，都唸「ㄨㄝ」。',
-        stroke: '共 5 畫：① 先寫「ㅗ」(2畫)；② 再寫「ㅐ」(3畫)。',
-        source: '10/19 & 11/12 筆記'
-      },
-      {
-        id: 'v_oe', char: 'ㅚ', type: 'compound', roma: 'oe', zhuyin: 'ㄨㄝ',
-        words: [{ kr: '외', mean: '外' }, { kr: '해외', mean: '海外' }, { kr: '외국인', mean: '外國人' }],
-        tip: 'ㅗ + ㅣ 組成。注意不是唸「ㄛㄧ」，現代標準發音唸作「ㄨㄝ」！',
-        stroke: '共 3 畫：① 短豎；② 橫線；③ 右邊長豎。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_wo', char: 'ㅝ', type: 'compound', roma: 'wo', zhuyin: 'ㄨㄛ',
-        words: [{ kr: '더워요', mean: '好熱' }, { kr: '추워요', mean: '好冷' }, { kr: '원', mean: '韓元' }],
-        tip: 'ㅜ + ㅓ 組成。由嘟嘴的「ㅜ」滑向放鬆的「ㅓ」，接近「ㄨㄛ」。',
-        stroke: '共 4 畫：① 長橫；② 下短豎；③ 短橫；④ 右長豎。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_we', char: 'ㅞ', type: 'compound', roma: 'we', zhuyin: 'ㄨㄝ',
-        words: [{ kr: '웨딩', mean: '婚禮 (Wedding)' }, { kr: '웹툰', mean: '網漫' }],
-        tip: 'ㅜ + ㅔ 組成。多用於外來語（如 Wedding 웨딩），發音為「ㄨㄝ」。',
-        stroke: '共 5 畫：① 先寫「ㅜ」(2畫)；② 再寫「ㅔ」(3畫)。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_wi', char: 'ㅟ', type: 'compound', roma: 'wi', zhuyin: 'ㄨㄧ',
-        words: [{ kr: '위', mean: '上面' }, { kr: '가위', mean: '剪刀' }],
-        tip: 'ㅜ + ㅣ 組成。由嘟嘴「ㅜ」快速滑向拉平的「ㅣ」，接近英文 We。',
-        stroke: '共 3 畫：① 長橫；② 下短豎；③ 右長豎。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'v_ui', char: 'ㅢ', type: 'compound', roma: 'ui', zhuyin: 'ㅡ+ㄧ (三種讀音)',
-        words: [{ kr: '의사', mean: '醫生' }, { kr: '의자', mean: '椅子' }, { kr: '예의', mean: '禮貌' }],
-        tip: '先拉平嘴角發「ㅡ」，再滑向「ㅣ」。記得 11/05 筆記三規則：字首 [의]、非字首 [이]、助詞「的」[에]！',
-        stroke: '共 2 畫：① 上方橫線（左→右）；② 右邊直線（上→下）。',
-        source: '11/05 筆記'
-      }
-    ];
-
-    const CONSONANTS = [
-      {
-        id: 'c_g', char: 'ㄱ', cat: 'plain', roma: 'g / k', zhuyin: 'ㄎ / ㄍ',
-        initial: '字首偏送氣「ㄎ」(如 가구 的第一個 가)',
-        nonInitial: '非字首/母音間濁化為「ㄍ」(如 아기、가구 的第二個 구)',
-        words: [{ kr: '고기', mean: '肉' }, { kr: '가구', mean: '傢俱' }, { kr: '가요', mean: '去' }],
-        tip: '像舌根抬起抵住軟顎的形狀。字首唸輕柔「ㄎ」，夾在母音中間時變「ㄍ」。',
-        stroke: '共 1 畫：① 一筆完成，由左向右畫橫線，接著直接轉折向下。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_n', char: 'ㄴ', cat: 'plain', roma: 'n', zhuyin: 'ㄋ',
-        initial: '「ㄋ」(舌尖抵住上齒齦鼻音)',
-        nonInitial: '「ㄋ」(同字首，發音穩定)',
-        words: [{ kr: '누나', mean: '姐姐' }, { kr: '노래', mean: '歌' }, { kr: '내일', mean: '明天' }],
-        tip: '像舌尖往上頂住上排牙齒後方的形狀，氣流從鼻腔出來。',
-        stroke: '共 1 畫：① 一筆完成，由上向下畫豎線，再直接轉折向右畫橫線。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_d', char: 'ㄷ', cat: 'plain', roma: 'd / t', zhuyin: 'ㄊ / ㄉ',
-        initial: '字首偏送氣「ㄊ」(如 도로 的 도)',
-        nonInitial: '非字首/母音間濁化為「ㄉ」(如 바다 的 다、구두 的 두)',
-        words: [{ kr: '바다', mean: '大海' }, { kr: '도로', mean: '道路' }, { kr: '구두', mean: '皮鞋' }],
-        tip: '「ㄴ」上面多一橫蓋子。字首偏「ㄊ」但氣流輕（紙不動），字中變「ㄉ」。',
-        stroke: '共 2 畫：① 先寫上方橫線（左→右）；② 再寫「ㄴ」形（下→右）。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_r', char: 'ㄹ', cat: 'plain', roma: 'r / l', zhuyin: 'ㄌ',
-        initial: '「ㄌ / r」(外來語多為 r/l，固有詞少見)',
-        nonInitial: '母音間輕彈舌「r / ㄌ」(如 다리、도로)；作終聲時為「l」',
-        words: [{ kr: '도로', mean: '道路' }, { kr: '노래', mean: '歌' }, { kr: '지하철', mean: '地鐵' }],
-        tip: '像彎曲彈動的舌頭！母音間舌尖輕輕彈擊上顎一次即可，不要捲舌太重。',
-        stroke: '共 3 畫：① 上橫轉折下豎；② 中橫線；③ 下豎轉折右橫。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_m', char: 'ㅁ', cat: 'plain', roma: 'm', zhuyin: 'ㄇ',
-        initial: '「ㄇ」(雙唇緊閉鼻音)',
-        nonInitial: '「ㄇ」(同字首)',
-        words: [{ kr: '어머니', mean: '媽媽' }, { kr: '엄마', mean: '媽媽' }, { kr: '머리', mean: '頭' }],
-        tip: '形狀就像閉起來的「嘴巴 (Mouth)」，雙唇緊閉後張開。',
-        stroke: '共 3 畫：① 左豎線；② 上橫轉折右豎；③ 下橫線封口。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_b', char: 'ㅂ', cat: 'plain', roma: 'b / p', zhuyin: 'ㄆ / ㄅ',
-        initial: '字首偏送氣「ㄆ」(如 바보 的 첫 바、바지 的 바)',
-        nonInitial: '非字首/母音間濁化為「ㄅ」(如 바보 的 보)',
-        words: [{ kr: '바보', mean: '傻瓜' }, { kr: '바다', mean: '大海' }, { kr: '바지', mean: '褲子' }],
-        tip: '經典記憶單字「바보」(傻瓜)：第一個字唸「ㄆㄚ」，第二個字唸「ㄅㄛ」！',
-        stroke: '共 4 畫：① 左豎；② 右豎；③ 中橫；④ 下橫。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_s', char: 'ㅅ', cat: 'plain', roma: 's (遇ㅣ變sh)', zhuyin: 'ㄙ (遇ㅣ變ㄒ)',
-        initial: '「ㄙ」；後方接「ㅣ / ㅑ / ㅕ / ㅛ / ㅠ」時顎化為「ㄒ」',
-        nonInitial: '同字首規則（遇ㅣ變ㄒ，不濁化）',
-        words: [{ kr: '소', mean: '牛' }, { kr: '사랑해', mean: '我愛你' }, { kr: '사과', mean: '蘋果/道歉' }],
-        tip: '像牙齒形狀，氣流從齒縫輕柔磨擦而出。遇到「ㅣ」母音會自動變成「ㄒ」（如 시간 時間）。',
-        stroke: '共 2 畫：① 先寫左撇（上→左下）；② 再從中間偏上寫右捺（右下）。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_ng', char: 'ㅇ', cat: 'plain', roma: '無音 / ng', zhuyin: '不發音 / [ng]',
-        initial: '作初聲（字首/左或上）時完全「不發音」，只佔位置',
-        nonInitial: '作終聲（字底）時發鼻音「[ng]」（如 방 房間）',
-        words: [{ kr: '아이', mean: '小孩' }, { kr: '오이', mean: '小黃瓜' }, { kr: '방', mean: '房間' }],
-        tip: '在上面/左邊是「空氣（沒聲音）」；掉到下面當終聲時才會發出「[ng]」鼻音。',
-        stroke: '共 1 畫：① 由頂端逆時針畫一個圓圈封口。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_j', char: 'ㅈ', cat: 'plain', roma: 'j / ch', zhuyin: 'ㄘ/ㄑ (字首) ・ ㄗ/ㄐ (字中)',
-        initial: '字首偏送氣「ㄘ」（遇ㅣ/ㅑ等母音為「ㄑ」，如 지도 地圖）',
-        nonInitial: '非字首/母音間濁化為「ㄗ / ㄐ」（如 바지 褲子、아버지 爸爸）',
-        words: [{ kr: '지도', mean: '地圖' }, { kr: '바지', mean: '褲子' }, { kr: '지하철', mean: '地鐵' }],
-        tip: '在「ㅅ」上面加一頂帽子。記住：바지 (褲子) 的 지 在第二字要濁化成「ㄐㄧ」！',
-        stroke: '共 2 畫：① 上橫轉折左撇；② 右捺（或先橫，再寫ㅅ）。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_h', char: 'ㅎ', cat: 'plain', roma: 'h', zhuyin: 'ㄏ',
-        initial: '「ㄏ」(比中文輕柔，從喉嚨深處呼氣)',
-        nonInitial: '位於母音間常「弱化或脫落」不發音（如 사랑해 口語常偏 사랑애）',
-        words: [{ kr: '사랑해', mean: '我愛你' }, { kr: '해외', mean: '海外' }, { kr: '하루', mean: '一天' }],
-        tip: '像戴帽子的「ㅇ」，唸的時候像輕輕嘆氣「ㅎ」。在字中夾在兩個母音間時常常會默默消失！',
-        stroke: '共 3 畫：① 頂端短點/短橫；② 中間長橫線；③ 下方圓圈。',
-        source: '10/19 筆記 + 補充'
-      },
-      {
-        id: 'c_ch', char: 'ㅊ', cat: 'aspirated', roma: 'ch', zhuyin: 'ㄘ / ㄑ(遇ㅣ) + 強氣流',
-        initial: '用力送氣的「ㄘ」（遇ㅣ/ㅑ/ㅕ等為「ㄑ」，如 지하철 地鐵）',
-        nonInitial: '同字首，維持強烈送氣（不會濁化）',
-        words: [{ kr: '지하철', mean: '地鐵' }, { kr: '체리', mean: '櫻桃' }, { kr: '김치', mean: '泡菜' }],
-        tip: '激音（氣音）家族！在「ㅈ」上面多加一點，紙放嘴巴前唸會明顯飄動。',
-        stroke: '共 3 畫：① 上方短點；② 橫線轉折左撇；③ 右捺。',
-        source: '10/19 & 11/05 筆記'
-      },
-      {
-        id: 'c_k', char: 'ㅋ', cat: 'aspirated', roma: 'k', zhuyin: 'ㄎ (強氣流)',
-        initial: '用力送氣的「ㄎ」(Coffee 的 K)',
-        nonInitial: '同字首，維持強烈送氣（如 쿠키 餅乾）',
-        words: [{ kr: '커피', mean: '咖啡' }, { kr: '커요', mean: '大' }, { kr: '콩', mean: '豆子' }],
-        tip: '「ㄱ」多加一橫＝氣流加倍！講義例字：커요 (大)、콩 (豆)、커피 (咖啡)。',
-        stroke: '共 2 畫：① 橫折向下；② 中間橫線（左→右）。',
-        source: '11/12 講義 & 筆記'
-      },
-      {
-        id: 'c_t', char: 'ㅌ', cat: 'aspirated', roma: 't', zhuyin: 'ㄊ (強氣流)',
-        initial: '用力送氣的「ㄊ」',
-        nonInitial: '同字首，維持強烈送氣（如 기타 吉他、스타 明星）',
-        words: [{ kr: '토끼', mean: '兔子' }, { kr: '탈', mean: '面具' }, { kr: '타다', mean: '搭乘' }],
-        tip: '「ㄷ」中間多一橫＝像英文 E。氣流強，紙放嘴前會動！講義例字：토끼 (兔子)、탈 (面具)。',
-        stroke: '共 3 畫：① 上橫；② 中橫；③ 左豎轉折下橫。',
-        source: '10/19 筆記 & 11/12 講義'
-      },
-      {
-        id: 'c_p', char: 'ㅍ', cat: 'aspirated', roma: 'p', zhuyin: 'ㄆ (強氣流)',
-        initial: '用力送氣的「ㄆ」',
-        nonInitial: '同字首，維持強烈送氣（如 커피 咖啡的 피）',
-        words: [{ kr: '포도', mean: '葡萄' }, { kr: '커피', mean: '咖啡' }, { kr: '팔', mean: '手臂' }],
-        tip: '雙唇緊閉後用力噴氣！講義例字：포도 (葡萄)、팔 (手臂)、풀 (膠水)。',
-        stroke: '共 4 畫：① 上橫；② 左豎；③ 右豎；④ 下橫。',
-        source: '10/19 筆記 & 11/12 講義'
-      },
-      {
-        id: 'c_kk', char: 'ㄲ', cat: 'tense', roma: 'kk', zhuyin: 'ㄍ (四聲重音)',
-        initial: '緊音「ㄍ」(像國語四聲「ㄍˋ」，先憋氣再清脆彈出，紙不動)',
-        nonInitial: '同字首，緊實有力（如 토끼 兔子、아까 剛剛）',
-        words: [{ kr: '토끼', mean: '兔子' }, { kr: '꿀', mean: '蜂蜜' }, { kr: '꺼요', mean: '關(燈)' }],
-        tip: '講義口訣：唸「꿀」「꺼요」時接近「ㄍ」四聲的發音，喉嚨緊縮不吐氣。',
-        stroke: '共 2 畫：連續寫兩個緊靠的「ㄱ」。',
-        source: '10/19 筆記 & 11/12 講義'
-      },
-      {
-        id: 'c_tt', char: 'ㄸ', cat: 'tense', roma: 'tt', zhuyin: 'ㄉ (四聲重音)',
-        initial: '緊音「ㄉ」(像國語四聲「ㄉˋ」，舌尖用力頂住上顎彈出)',
-        nonInitial: '同字首，短促有力（如 따라요 跟從）',
-        words: [{ kr: '딸', mean: '女兒' }, { kr: '따라요', mean: '跟從' }, { kr: '딸기', mean: '草莓' }],
-        tip: '講義口訣：唸「딸」(女兒)、「따라요」(跟從) 接近「ㄉ」四聲的發音！',
-        stroke: '共 4 畫：連續寫兩個緊靠的「ㄷ」。',
-        source: '11/12 講義'
-      },
-      {
-        id: 'c_pp', char: 'ㅃ', cat: 'tense', roma: 'pp', zhuyin: 'ㄅ (四聲重音)',
-        initial: '緊音「ㄅ」(像國語四聲「ㄅˋ」，雙唇緊閉蓄力爆發)',
-        nonInitial: '同字首，紮實有力（如 오빠 哥哥、예뻐요 漂亮）',
-        words: [{ kr: '오빠', mean: '哥哥' }, { kr: '뿔', mean: '角' }, { kr: '빵', mean: '麵包' }],
-        tip: '講義口訣：唸「뿔」(角) 接近「ㄅ」四聲的發音，紙放在嘴巴前完全不會動。',
-        stroke: '共 8 畫：連續寫兩個緊靠的「ㅂ」。',
-        source: '10/19 筆記 & 11/12 講義'
-      },
-      {
-        id: 'c_ss', char: 'ㅆ', cat: 'tense', roma: 'ss', zhuyin: 'ㄙ (緊音，遇ㅣ變ㄒ)',
-        initial: '緊音「ㄙ」(牙齒咬緊、氣流極細緊繃擠出；遇ㅣ變緊音「ㄒ」)',
-        nonInitial: '同字首（如 먹었어요 吃了）',
-        words: [{ kr: '싸다', mean: '便宜' }, { kr: '쓰다', mean: '寫' }, { kr: '씨', mean: '先生/小姐' }],
-        tip: '比單純的「ㅅ」更用力、更短促！例字：싸다 (便宜)。',
-        stroke: '共 4 畫：連續寫兩個緊靠的「ㅅ」。',
-        source: '10/19 筆記'
-      },
-      {
-        id: 'c_jj', char: 'ㅉ', cat: 'tense', roma: 'jj', zhuyin: 'ㄗ / ㄐ(遇ㅣ，四聲重音)',
-        initial: '緊音「ㄗ / ㄐ」(遇ㅣ/ㅑ等為緊音「ㄐ」)',
-        nonInitial: '同字首（如 진짜 真的）',
-        words: [{ kr: '진짜', mean: '真的' }, { kr: '짜다', mean: '鹹' }, { kr: '찌개', mean: '鍋(湯)' }],
-        tip: '舌面緊貼上顎後爆發，接近國語四聲的「ㄐˋ / ㄗˋ」。例字：진짜 (真的)。',
-        stroke: '共 4 畫：連續寫兩個緊靠的「ㅈ」。',
-        source: '10/19 筆記'
-      }
-    ];
-
-    const CONTRAST_GROUPS = [
-      { title: 'ㄱ vs ㄲ (牡蠣 vs 蜂蜜)', items: [{ kr: '굴', mean: '牡蠣 (平音・紙不動)' }, { kr: '꿀', mean: '蜂蜜 (ㄍ四聲)' }] },
-      { title: 'ㅂ vs ㅍ (腳 vs 手臂)', items: [{ kr: '발', mean: '腳 (紙不動)' }, { kr: '팔', mean: '手臂 (氣流強・紙會動)' }] },
-      { title: 'ㅂ vs ㅃ vs ㅍ (火/角/膠水)', items: [{ kr: '불', mean: '火 (紙不動)' }, { kr: '뿔', mean: '角 (ㄅ四聲)' }, { kr: '풀', mean: '膠水 (紙會動)' }] },
-      { title: 'ㄱ vs ㅋ (球 vs 豆)', items: [{ kr: '공', mean: '球 (紙不動)' }, { kr: '콩', mean: '豆 (氣流強・紙會動)' }] },
-      { title: 'ㄱ vs ㅋ vs ㄲ (去/大/關)', items: [{ kr: '가요', mean: '去 (紙不動)' }, { kr: '커요', mean: '大 (紙會動)' }, { kr: '꺼요', mean: '關 (ㄍ四聲)' }] },
-      { title: 'ㄷ vs ㄸ vs ㅌ (月亮/女兒/面具)', items: [{ kr: '달', mean: '月亮 (紙不動)' }, { kr: '딸', mean: '女兒 (ㄉ四聲)' }, { kr: '탈', mean: '面具 (紙會動)' }] }
-    ];
-
-    const BATCHIM_REP = [
-      {
-        id: 'b_g', rep: 'ㄱ', roma: '[k̚] (無聲除阻)', zhuyin: '喉嚨卡住快收尾 (近似台語入聲 -k)',
-        members: '單：ㄱ, ㅋ, ㄲ ｜ 雙：ㄳ, ㄺ',
-        words: [{ kr: '악', mean: '惡' }, { kr: '약', mean: '藥' }, { kr: '맥주', mean: '啤酒' }, { kr: '닭', mean: '雞 [닥]' }],
-        tip: '講義重點：唸「맥주」(啤酒) 的終聲時，會感覺「喉嚨裡好像有東西卡住」一樣突然煞車，千萬不要吐氣！'
-      },
-      {
-        id: 'b_n', rep: 'ㄴ', roma: '[n]', zhuyin: '鼻音 ㄣ (舌尖頂上排牙齒後)',
-        members: '單：ㄴ ｜ 雙：ㄴㅈ, ㄴㅎ',
-        words: [{ kr: '안', mean: '不/內' }, { kr: '안내', mean: '資訊' }, { kr: '반', mean: '半' }, { kr: '언니', mean: '姐姐' }],
-        tip: '講義重點：唸「반」「안내」的時候，舌頭要放在「上排牙齒的後面」，尾聲「ㄴ」稍微拉長一點，氣從鼻子出。'
-      },
-      {
-        id: 'b_d', rep: 'ㄷ', roma: '[t̚] (無聲除阻)', zhuyin: '舌尖頂住門牙後方急停 (近似台語 -t)',
-        members: '單：ㄷ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ',
-        words: [{ kr: '앋', mean: '測試音' }, { kr: '낟/낱/낫/낮/낳', mean: '皆唸 [낟]' }, { kr: '빛', mean: '光 [빋]' }, { kr: '옷', mean: '衣服 [옫]' }],
-        tip: '最多字共用的代表音 (7個)！舌尖快速頂住上排門牙後方堵住氣流，不可發出「ㄙ」或吐氣音。'
-      },
-      {
-        id: 'b_r', rep: 'ㄹ', roma: '[l]', zhuyin: '舌尖輕頂上顎 (近似英文 L 收尾)',
-        members: '單：ㄹ ｜ 雙：ㄹㅂ, ㄹㅅ, ㄹㅌ, ㄹㅎ',
-        words: [{ kr: '일', mean: '一/工作' }, { kr: '멀리', mean: '遠' }, { kr: '지하철', mean: '地鐵' }, { kr: '싫다', mean: '討厭 [실타]' }],
-        tip: '講義重點：唸「멀리」的時候「ㄹ」尾聲要長一點，舌尖抵住上齒齦兩側微留空隙滑過，不同於初聲的彈舌。'
-      },
-      {
-        id: 'b_m', rep: 'ㅁ', roma: '[m]', zhuyin: '閉唇鼻音 (嘴巴閉起來)',
-        members: '單：ㅁ ｜ 雙：ㄹㅁ',
-        words: [{ kr: '밤', mean: '晚上' }, { kr: '엄마', mean: '媽媽' }, { kr: '임 / 김', mean: '姓氏 林/金' }, { kr: '삶', mean: '人生 [삼]' }],
-        tip: '講義重點：唸「밤」(晚上) 的時候，「嘴巴要完全閉起來」，聲音從鼻腔嗡嗡發出。'
-      },
-      {
-        id: 'b_b', rep: 'ㅂ', roma: '[p̚] (無聲除阻)', zhuyin: '雙唇快速緊閉堵氣 (近似台語 -p)',
-        members: '單：ㅂ, ㅍ ｜ 雙：ㅂㅅ, ㄹㅍ',
-        words: [{ kr: '입', mean: '嘴巴' }, { kr: '밥', mean: '飯' }, { kr: '앞', mean: '前面 [압]' }, { kr: '값', mean: '價格 [갑]' }],
-        tip: '雙唇瞬間緊閉，把氣堵在嘴唇裡面不噴出來！跟「ㅁ」的差別在於「ㅂ」沒有鼻音且短促截斷。'
-      },
-      {
-        id: 'b_ng', rep: 'ㅇ', roma: '[ŋ]', zhuyin: '鼻音 ㄥ / [ng]',
-        members: '單：ㅇ',
-        words: [{ kr: '방', mean: '房間' }, { kr: '노래방', mean: 'KTV' }, { kr: '공', mean: '球' }, { kr: '강', mean: '江河' }],
-        tip: '講義重點：作初聲不發音，作終聲要發「[ng]」鼻音！唸「방」時舌根頂住軟顎、用鼻音共鳴。'
-      }
-    ];
-
-    const DOUBLE_RIGHT = [
-      { pair: 'ㄹㄱ', sound: 'ㄱ [닥]', ex: '닭', mean: '雞 (講義例字：닭 [닥])', note: '例外：後面遇 ㄱ 開頭詞尾時有時唸 ㄹ' },
-      { pair: 'ㄹㅁ', sound: 'ㅁ [삼]', ex: '삶', mean: '人生 (講義例字：삶 [삼])', note: '還有 젊다 [점따] 年輕' },
-      { pair: 'ㄹㅍ', sound: 'ㅂ [읍따]', ex: '읊다', mean: '吟誦 [읍따]', note: 'ㅍ 作終聲歸類為代表音 ㅂ' }
-    ];
-
-    const DOUBLE_LEFT = [
-      { pair: 'ㄱㅅ', sound: 'ㄱ', ex: '넋 [넉]', mean: '魂魄' },
-      { pair: 'ㄴㅈ', sound: 'ㄴ', ex: '앉다 [안따]', mean: '坐下' },
-      { pair: 'ㄴㅎ', sound: 'ㄴ', ex: '많다 [만타]', mean: '多 (ㅎ+ㄷ=ㅌ 氣音化)' },
-      { pair: 'ㄹㅂ', sound: 'ㄹ', ex: '넓다 [널따]', mean: '寬廣' },
-      { pair: 'ㄹㅅ', sound: 'ㄹ', ex: '외곬 [외골]', mean: '單一方向' },
-      { pair: 'ㄹㅌ', sound: 'ㄹ', ex: '핥다 [할따]', mean: '舔' },
-      { pair: 'ㄹㅎ', sound: 'ㄹ', ex: '싫다 [실타]', mean: '討厭 (ㅎ+ㄷ=ㅌ 氣音化)' },
-      { pair: 'ㅂㅅ', sound: 'ㅂ', ex: '값 [갑]', mean: '價格、價值' }
-    ];
-
-    const BATCHIM_PAIRS = [
-      { a: '매주', am: '每週', b: '맥주', bm: '啤酒 (喉嚨卡住)', speak: '매주, 맥주' },
-      { a: '아내', am: '太太', b: '안내', bm: '資訊 (ㄴ尾聲長)', speak: '아내, 안내' },
-      { a: '머리', am: '頭', b: '멀리', bm: '遠 (ㄹ尾聲長)', speak: '머리, 멀리' },
-      { a: '반 / 밤 / 방', am: '半(頂齒)/晚(閉嘴)/房(鼻音)', b: '달라요 / 따라요', bm: '不一樣 / 跟從', speak: '반, 밤, 방' }
-    ];
-
-    const CLASS_7_DATA = [
-      { rep: 'ㄱ', ipa: '[k̚] 喉部急停', single: ['ㄱ', 'ㅋ', 'ㄲ'], dbl: ['ㄳ', 'ㄺ'], ex: '악, 부엌[부억], 밖[박], 닭[닥]' },
-      { rep: 'ㄴ', ipa: '[n] 舌尖鼻音', single: ['ㄴ'], dbl: ['ㄴㅈ', 'ㄴㅎ'], ex: '안, 안내, 앉다[안따], 많다[만타]' },
-      { rep: 'ㄷ', ipa: '[t̚] 舌尖急停', single: ['ㄷ', 'ㅌ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅎ'], dbl: [], ex: '낟/낱/낫/낮/낳 (全部發 [낟])' },
-      { rep: 'ㄹ', ipa: '[l] 舌尖輕頂', single: ['ㄹ'], dbl: ['ㄹㅂ', 'ㄹㅅ', 'ㄹㅌ', 'ㄹㅎ'], ex: '일, 멀리, 넓다[널따], 싫다[실타]' },
-      { rep: 'ㅁ', ipa: '[m] 閉唇鼻音', single: ['ㅁ'], dbl: ['ㄹㅁ'], ex: '밤, 엄마, 김, 삶[삼]' },
-      { rep: 'ㅂ', ipa: '[p̚] 雙唇急停', single: ['ㅂ', 'ㅍ'], dbl: ['ㅂㅅ', 'ㄹㅍ'], ex: '밥, 입, 앞[압], 값[갑]' },
-      { rep: 'ㅇ', ipa: '[ŋ] 舌根鼻音', single: ['ㅇ'], dbl: [], ex: '방, 노래방, 공, 강' }
-    ];
-
-    // ==================== STATE ====================
-    let state = {
-      activeTab: 'vowels',
-      vowelFilter: 'all',
-      consonantFilter: 'all',
-      classFilter: 'all',
-      searchQuery: '',
-      onlyBookmarks: false,
-      bookmarks: new Set(),
-      quizMode: 'mixed',
-      quizIndex: 0,
-      quizScore: 0,
-      quizQuestions: [],
-      quizAnswered: false,
-      speechRate: 0.55
-    };
-
-    try {
-      const saved = JSON.parse(localStorage.getItem('eva_kr_bookmarks') || '[]');
-      if (Array.isArray(saved)) state.bookmarks = new Set(saved);
-    } catch (e) {}
-
-    function saveBookmarks() {
-      try {
-        localStorage.setItem('eva_kr_bookmarks', JSON.stringify([...state.bookmarks]));
-      } catch (e) {}
-      document.getElementById('bookmarkCount').textContent = state.bookmarks.size;
-    }
-
-    function toggleBookmark(id) {
-      if (state.bookmarks.has(id)) state.bookmarks.delete(id);
-      else state.bookmarks.add(id);
-      saveBookmarks();
-      renderAll();
-    }
-
-    // ==================== SPEECH ====================
-    let cachedKrVoice = null;
-    function getBestKoreanVoice() {
-      if (!('speechSynthesis' in window)) return null;
-      const voices = window.speechSynthesis.getVoices() || [];
-      const krVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ko'));
-      if (!krVoices.length) return null;
-      return krVoices.find(v => /yuna|sora|google|natural|premium/i.test(v.name)) || krVoices[0];
-    }
-    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = () => { cachedKrVoice = getBestKoreanVoice(); };
-    }
-
-    let speakTimer = null;
-    function speakKr(text) {
-      if (!('speechSynthesis' in window)) return;
-      try {
-        if (speakTimer) { clearTimeout(speakTimer); speakTimer = null; }
-        window.speechSynthesis.cancel();
-        if (!cachedKrVoice) cachedKrVoice = getBestKoreanVoice();
-
-        const parts = String(text).split(/[,，、]/).map(t => t.trim()).filter(Boolean);
-        const speakPart = (idx) => {
-          if (idx >= parts.length) return;
-          const utt = new SpeechSynthesisUtterance(parts[idx]);
-          utt.lang = 'ko-KR';
-          if (cachedKrVoice) utt.voice = cachedKrVoice;
-          utt.rate = state.speechRate;
-          utt.pitch = 1.0;
-          utt.volume = 1.0;
-          utt.onend = () => {
-            if (idx + 1 < parts.length) {
-              speakTimer = setTimeout(() => speakPart(idx + 1), 420);
-            }
-          };
-          window.speechSynthesis.speak(utt);
-        };
-        speakPart(0);
-      } catch (e) {}
-    }
-
-    const SPEED_STEPS = [
-      { rate: 0.55, label: '語速：慢 0.55x' },
-      { rate: 0.75, label: '語速：中 0.75x' },
-      { rate: 0.95, label: '語速：常 0.95x' }
-    ];
-    let speedIdx = 0;
-    document.getElementById('speedToggleBtn').addEventListener('click', () => {
-      speedIdx = (speedIdx + 1) % SPEED_STEPS.length;
-      state.speechRate = SPEED_STEPS[speedIdx].rate;
-      document.getElementById('speedLabel').textContent = SPEED_STEPS[speedIdx].label;
-    });
-
-    // ==================== SEARCH MATCH ====================
-    function matchQuery(obj, fields) {
-      if (state.onlyBookmarks && !state.bookmarks.has(obj.id)) return false;
-      const q = state.searchQuery.trim().toLowerCase();
-      if (!q) return true;
-      return fields.some(f => (f || '').toLowerCase().includes(q));
-    }
-
-    const starSvg = (filled) => filled
-      ? `<svg class="w-4 h-4 text-[#C66B4F]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>`
-      : `<svg class="w-4 h-4 text-[#C8C0B4] hover:text-[#C66B4F]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>`;
-
-    const speakerSvg = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>`;
-
-    // ==================== RENDER FUNCTIONS ====================
-    function renderVowels() {
-      const grid = document.getElementById('vowelsGrid');
-      const list = VOWELS.filter(v => {
-        if (state.vowelFilter !== 'all' && v.type !== state.vowelFilter) return false;
-        const wordStr = v.words.map(w => `${w.kr} ${w.mean}`).join(' ');
-        return matchQuery(v, [v.char, v.roma, v.zhuyin, v.tip, wordStr]);
-      });
-
-      if (!list.length) {
-        grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#9C948B] text-sm">找不到符合條件的母音項目</div>`;
-        return;
-      }
-
-      grid.innerHTML = list.map(v => {
-        const isStar = state.bookmarks.has(v.id);
-        return `
-          <div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-4">
-            <div>
-              <div class="flex items-start justify-between gap-2">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#E6DFD5] text-[#2B2623] flex items-center justify-center text-3xl font-bold kr">${v.char}</div>
-                  <div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-[11px] px-2 py-0.5 rounded-full ${v.type === 'basic' ? 'bg-[#EFEAE2] text-[#575049]' : 'bg-[#EEF2F6] text-[#4B5B76]'} font-medium">${v.type === 'basic' ? '基本母音' : '複合母音'}</span>
-                      <span class="text-[11px] text-[#A8A096]">${v.source}</span>
-                    </div>
-                    <div class="mt-1.5 text-sm font-semibold text-[#2B2623]">
-                      <span class="text-[#4B5B76]">${v.roma}</span>
-                      <span class="mx-1.5 text-[#D6CEC2]">|</span>
-                      <span class="text-[#C66B4F]">${v.zhuyin}</span>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" onclick="toggleBookmark('${v.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]" title="加入待複習">${starSvg(isStar)}</button>
-              </div>
-
-              <div class="mt-3.5 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
-                <span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${v.tip}
-              </div>
-
-              <div class="mt-2.5 text-xs text-[#78716C] leading-relaxed">
-                <span class="font-semibold text-[#4A433D]">筆順：</span>${v.stroke}
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5">
-                ${v.words.map(w => `<button type="button" onclick="speakKr('${w.kr}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#EAE3D8] text-xs text-[#4A433D] transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
-              </div>
-              <div class="flex items-center gap-1.5 ml-auto">
-                <button type="button" onclick="speakKr('${v.char}')" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#E6DFD5] text-[#4A433D] flex items-center justify-center" title="朗讀母音">${speakerSvg}</button>
-                <button type="button" onclick="openModal('vowel', '${v.id}')" class="px-3 py-1.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] text-xs font-medium transition">筆順練習</button>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderConsonants() {
-      const grid = document.getElementById('consonantsGrid');
-      const list = CONSONANTS.filter(c => {
-        if (state.consonantFilter !== 'all' && c.cat !== state.consonantFilter) return false;
-        const wordStr = c.words.map(w => `${w.kr} ${w.mean}`).join(' ');
-        return matchQuery(c, [c.char, c.roma, c.zhuyin, c.initial, c.nonInitial, c.tip, wordStr]);
-      });
-
-      if (!list.length) {
-        grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#9C948B] text-sm">找不到符合條件的子音項目</div>`;
-      } else {
-        const catMap = {
-          plain: ['基本平音', 'bg-[#EFEAE2] text-[#575049]'],
-          aspirated: ['激音/氣音', 'bg-[#FCF5F2] text-[#B5593D]'],
-          tense: ['硬音/雙子音', 'bg-[#EDF3F0] text-[#4A6B5D]']
-        };
-        grid.innerHTML = list.map(c => {
-          const isStar = state.bookmarks.has(c.id);
-          const [catLabel, catCls] = catMap[c.cat];
-          return `
-            <div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-4">
-              <div>
-                <div class="flex items-start justify-between gap-2">
-                  <div class="flex items-center gap-3.5">
-                    <div class="w-14 h-14 rounded-2xl bg-[#FCF5F2] border border-[#F2DFD8] text-[#B5593D] flex items-center justify-center text-3xl font-bold kr">${c.char}</div>
-                    <div>
-                      <div class="flex items-center gap-2">
-                        <span class="text-[11px] px-2 py-0.5 rounded-full ${catCls} font-medium">${catLabel}</span>
-                        <span class="text-[11px] text-[#A8A096]">${c.source}</span>
-                      </div>
-                      <div class="mt-1.5 text-sm font-semibold text-[#2B2623]">
-                        <span class="text-[#4B5B76]">${c.roma}</span>
-                        <span class="mx-1.5 text-[#D6CEC2]">|</span>
-                        <span class="text-[#C66B4F]">${c.zhuyin}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="button" onclick="toggleBookmark('${c.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]">${starSvg(isStar)}</button>
-                </div>
-
-                <div class="mt-3.5 space-y-1.5 text-xs">
-                  <div class="p-2.5 rounded-xl bg-[#F3F6FA] border border-[#E0E6F0] text-[#3B475C]">
-                    <span class="font-semibold">① 第一個字(字首)：</span>${c.initial}
-                  </div>
-                  <div class="p-2.5 rounded-xl bg-[#F4F8F6] border border-[#DCE8E1] text-[#355245]">
-                    <span class="font-semibold">② 非第一個字(字中)：</span>${c.nonInitial}
-                  </div>
-                </div>
-
-                <div class="mt-2.5 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
-                  <span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${c.tip}
-                </div>
-                <div class="mt-2 text-xs text-[#78716C] leading-relaxed">
-                  <span class="font-semibold text-[#4A433D]">筆順：</span>${c.stroke}
-                </div>
-              </div>
-
-              <div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap items-center justify-between gap-2">
-                <div class="flex flex-wrap gap-1.5">
-                  ${c.words.map(w => `<button type="button" onclick="speakKr('${w.kr}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#EAE3D8] text-xs text-[#4A433D] transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
-                </div>
-                <div class="flex items-center gap-1.5 ml-auto">
-                  <button type="button" onclick="speakKr('${c.words[0].kr}')" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#E6DFD5] text-[#4A433D] flex items-center justify-center" title="朗讀範例">${speakerSvg}</button>
-                  <button type="button" onclick="openModal('consonant', '${c.id}')" class="px-3 py-1.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] text-xs font-medium transition">筆順練習</button>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-
-      document.getElementById('contrastGrid').innerHTML = CONTRAST_GROUPS.map(g => `
-        <div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EAE3D8]">
-          <div class="text-xs font-semibold text-[#2B2623] mb-2.5">${g.title}</div>
-          <div class="flex flex-wrap gap-1.5">
-            ${g.items.map(it => `<button type="button" onclick="speakKr('${it.kr}')" class="px-2.5 py-1.5 rounded-full bg-white border border-[#E2DAD0] hover:border-[#C66B4F] text-xs text-left transition"><span class="kr font-bold text-[#C66B4F]">${it.kr}</span> <span class="text-[#575049]">${it.mean}</span></button>`).join('')}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderBatchim() {
-      const grid = document.getElementById('batchimGrid');
-      const list = BATCHIM_REP.filter(b => {
-        const wordStr = b.words.map(w => `${w.kr} ${w.mean}`).join(' ');
-        return matchQuery(b, [b.rep, b.roma, b.zhuyin, b.members, b.tip, wordStr]);
-      });
-
-      grid.innerHTML = list.length ? list.map(b => {
-        const isStar = state.bookmarks.has(b.id);
-        return `
-          <div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-3.5">
-            <div>
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-12 h-12 rounded-2xl bg-[#EDF3F0] border border-[#D4E2DA] text-[#4A6B5D] flex items-center justify-center text-2xl font-bold kr">${b.rep}</div>
-                  <div>
-                    <div class="text-[11px] font-semibold text-[#4A6B5D]">代表音 [${b.rep}]</div>
-                    <div class="text-sm font-bold text-[#2B2623]">${b.roma}</div>
-                  </div>
-                </div>
-                <button type="button" onclick="toggleBookmark('${b.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]">${starSvg(isStar)}</button>
-              </div>
-              <div class="mt-3 text-xs font-semibold text-[#C66B4F]">口型/注音：${b.zhuyin}</div>
-              <div class="mt-1 text-xs text-[#78716C]">包含寫法：${b.members}</div>
-              <div class="mt-3 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
-                <span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${b.tip}
-              </div>
-            </div>
-            <div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap gap-1.5">
-              ${b.words.map(w => `<button type="button" onclick="speakKr('${w.kr.split('/')[0]}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EDF3F0] border border-[#EAE3D8] text-xs transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
-            </div>
-          </div>
-        `;
-      }).join('') : `<div class="col-span-full text-center py-10 text-[#9C948B] text-sm">找不到符合條件的終聲項目</div>`;
-
-      document.getElementById('doubleRightList').innerHTML = DOUBLE_RIGHT.map(d => `
-        <div class="p-3.5 rounded-xl bg-white border border-[#D4E2DA] flex items-center justify-between gap-2">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="kr text-xl font-bold text-[#4A6B5D]">${d.pair}</span>
-              <span class="text-[11px] px-2 py-0.5 rounded-full bg-[#EDF3F0] text-[#355245] font-medium">唸右邊 → ${d.sound}</span>
-            </div>
-            <div class="text-xs text-[#4A433D] mt-1"><span class="kr font-bold text-[#2B2623]">${d.ex}</span> ${d.mean}</div>
-            <div class="text-[11px] text-[#9C948B] mt-0.5">${d.note}</div>
-          </div>
-          <button type="button" onclick="speakKr('${d.ex}')" class="w-8 h-8 rounded-full bg-[#F4F8F6] hover:bg-[#E1EDE7] text-[#4A6B5D] flex items-center justify-center shrink-0">${speakerSvg}</button>
-        </div>
-      `).join('');
-
-      document.getElementById('doubleLeftList').innerHTML = DOUBLE_LEFT.map(d => `
-        <div class="p-3 rounded-xl bg-white border border-[#E6DFD5] flex items-center justify-between gap-2">
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="kr text-lg font-bold text-[#2B2623]">${d.pair}</span>
-              <span class="text-[11px] px-2 py-0.5 rounded-full bg-[#EFEAE2] text-[#575049] font-medium">唸 ${d.sound}</span>
-            </div>
-            <div class="text-xs text-[#575049] mt-1"><span class="kr font-semibold text-[#2B2623]">${d.ex}</span> ${d.mean}</div>
-          </div>
-          <button type="button" onclick="speakKr('${d.ex.split(' ')[0]}')" class="w-7 h-7 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] text-[#575049] flex items-center justify-center shrink-0">${speakerSvg}</button>
-        </div>
-      `).join('');
-
-      document.getElementById('batchimPairsGrid').innerHTML = BATCHIM_PAIRS.map(p => `
-        <button type="button" onclick="speakKr('${p.speak}')" class="p-3.5 rounded-xl bg-[#FAF7F2] hover:bg-[#EFEAE2]/70 border border-[#EAE3D8] text-left transition">
-          <div class="flex items-center justify-between">
-            <span class="kr font-bold text-[#2B2623] text-sm">${p.a} vs ${p.b}</span>
-            <span class="text-[#78716C]">${speakerSvg}</span>
-          </div>
-          <div class="text-xs text-[#78716C] mt-1">${p.am} ｜ ${p.bm}</div>
-        </button>
-      `).join('');
-    }
-
-    function renderClassification() {
-      const pills = document.getElementById('classFilterPills');
-      pills.innerHTML = [
-        `<button type="button" onclick="setClassFilter('all')" class="px-3.5 py-1.5 rounded-full text-xs font-medium transition ${state.classFilter === 'all' ? 'bg-[#2B2623] text-[#FAF7F2]' : 'bg-white border border-[#E2DAD0] text-[#575049] hover:bg-[#EFEAE2]'}">全部 7 種</button>`,
-        ...CLASS_7_DATA.map(c => `<button type="button" onclick="setClassFilter('${c.rep}')" class="kr px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${state.classFilter === c.rep ? 'bg-[#C66B4F] text-white' : 'bg-white border border-[#E2DAD0] text-[#575049] hover:bg-[#FAF7F2]'}">代表音 [${c.rep}]</button>`)
-      ].join('');
-
-      const filtered = CLASS_7_DATA.filter(c => state.classFilter === 'all' || c.rep === state.classFilter);
-      document.getElementById('classificationCards').innerHTML = filtered.map(c => `
-        <div class="card-paper rounded-2xl p-5 space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-center text-xl font-bold kr">${c.rep}</span>
-              <div>
-                <div class="font-bold text-[#2B2623]">代表音 [${c.rep}]</div>
-                <div class="text-xs text-[#78716C]">${c.ipa}</div>
-              </div>
-            </div>
-            <span class="text-xs font-medium text-[#78716C]">共 ${c.single.length + c.dbl.length} 種寫法</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 items-center text-xs">
-            <span class="text-[#78716C]">單收尾：</span>
-            ${c.single.map(s => `<span class="kr px-2.5 py-0.5 rounded-full bg-[#FAF7F2] border border-[#E6DFD5] font-semibold text-[#2B2623]">${s}</span>`).join('')}
-          </div>
-          <div class="flex flex-wrap gap-1.5 items-center text-xs">
-            <span class="text-[#78716C]">雙收尾：</span>
-            ${c.dbl.length ? c.dbl.map(d => `<span class="kr px-2.5 py-0.5 rounded-full bg-[#FDF6EC] border border-[#EED9BD] font-semibold text-[#8C5A2B]">${d}</span>`).join('') : '<span class="text-[#B8AFA6]">無</span>'}
-          </div>
-          <div class="text-xs text-[#575049] pt-2 border-t border-[#F0EAE1]">
-            <span class="font-semibold text-[#2B2623]">例字：</span><span class="kr">${c.ex}</span>
-          </div>
-        </div>
-      `).join('');
-
-      document.getElementById('classTableBody').innerHTML = CLASS_7_DATA.map(c => `
-        <tr class="hover:bg-[#FAF7F2]">
-          <td class="px-4 py-3 font-bold text-lg kr text-[#C66B4F]">${c.rep}</td>
-          <td class="px-4 py-3 text-[#575049]">${c.ipa}</td>
-          <td class="px-4 py-3 kr font-semibold text-[#2B2623]">${c.single.join('、')}</td>
-          <td class="px-4 py-3 kr font-semibold text-[#8C5A2B]">${c.dbl.length ? c.dbl.join('、') : '—'}</td>
-          <td class="px-4 py-3 kr text-[#575049]">${c.ex}</td>
-        </tr>
-      `).join('');
-    }
-
-    function setClassFilter(val) {
-      state.classFilter = val;
-      renderClassification();
-    }
-
-    // ==================== QUIZ ====================
-    const QUIZ_BANK = [
-      { mode: 'batchim7', q: '單字「빛 (光)」的終聲 ㅊ，歸類在七種終聲的哪一個代表音？', opts: ['ㄱ', 'ㄷ', 'ㅂ', 'ㅇ'], ans: 1, exp: 'ㄷ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ 這 7 個子音作終聲時，全部歸類發 [ㄷ] 的音。' },
-      { mode: 'batchim7', q: '單字「부엌 (廚房)」的終聲 ㅋ，歸類在七種終聲的哪一個代表音？', opts: ['ㄱ', 'ㄷ', 'ㄹ', 'ㅁ'], ans: 0, exp: 'ㄱ, ㅋ, ㄲ 作終聲時皆歸類為代表音 [ㄱ]，喉嚨緊縮快快收音。' },
-      { mode: 'batchim7', q: '下列哪一組三個雙子音「絕對不會」出現在終聲位置？', opts: ['ㄲ, ㅆ, ㅉ', 'ㄸ, ㅃ, ㅉ', 'ㄱ, ㄷ, ㅂ', 'ㅋ, ㅌ, ㅍ'], ans: 1, exp: '27 種終聲寫法中，只有 ㄸ, ㅃ, ㅉ 這三個雙子音永遠不會當終聲。' },
-      { mode: 'double', q: '雙收尾音「닭 (雞)」應該唸左邊還是右邊？正確發音為何？', opts: ['唸左邊 [달]', '唸右邊 [닥]', '兩個都唸', '不發音'], ans: 1, exp: '口訣：先記 3 個唸右邊的雙收尾音「ㄺ, ㄻ, ㄿ」，所以 닭 唸右邊 [닥]。' },
-      { mode: 'double', q: '雙收尾音「삶 (人生)」的正確發音為何？', opts: ['[살]', '[삼]', '[삽]', '[삭]'], ans: 1, exp: 'ㄻ 屬於唸右邊的三個雙收尾音之一，故 삶 發音為 [삼]。' },
-      { mode: 'double', q: '講義例字「많다 (多)」的雙收尾音 ㄴㅎ，加上氣音化後的正確發音為何？', opts: ['[만다]', '[마타]', '[만타]', '[말타]'], ans: 2, exp: 'ㄴㅎ 唸左邊 ㄴ，而右邊的 ㅎ 遇到後面的 ㄷ 會產生氣音化 (ㅎ+ㄷ=ㅌ)，唸 [만타]。' },
-      { mode: 'consonant_pos', q: '單字「바보 (傻瓜)」的第一個 ㅂ 和第二個 ㅂ 分別接近什麼注音？', opts: ['都是 ㄅ', '都是 ㄆ', '第一個 ㄆ，第二個 ㄅ', '第一個 ㄅ，第二個 ㄆ'], ans: 2, exp: '基本子音 ㄱ, ㄷ, ㅂ, ㅈ 在字首偏送氣 (ㄎ/ㄊ/ㄆ/ㄘ)，在非字首母音間會濁化 (ㄍ/ㄉ/ㄅ/ㄗ)，所以 바보 唸作「ㄆㄚ ㄅㄛ」。' },
-      { mode: 'consonant_pos', q: '單字「민주주의의 의의」正確讀音為何？', opts: ['[민주주의의 의의]', '[민주주이에 의이]', '[민주주에에 에이]', '[민주주의에 이의]'], ans: 1, exp: '11/05 筆記經典句：非字首的 의 唸 [이]，當助詞「的」時唸 [에]，在第一個字時唸 [의]，合起來是 [민주주이에 의이]。' },
-      { mode: 'batchim7', q: '講義對比「매주 (每週)」與「맥주 (啤酒)」，唸 맥주 終聲時有什麼訣竅？', opts: ['嘴巴完全閉起來', '舌尖頂住上排牙齒後面', '喉嚨裡好像有東西卡住', '用鼻音拉長'], ans: 2, exp: '11/12 講義筆記：唸「맥주」的 ㄱ 終聲時，要感覺喉嚨裡好像有東西卡住一樣急停。' },
-      { mode: 'consonant_pos', q: '拿一張紙放嘴巴前唸「발 (腳)」與「팔 (手臂)」，哪個會讓紙明顯動？', opts: ['발 (腳)', '팔 (手臂)', '兩個都會動', '兩個都不會動'], ans: 1, exp: '11/12 講義：ㅍ 是激音(氣音)，氣流較強，唸 팔 的時候紙會跟著動；ㅂ 則是平音，紙不動。' }
-    ];
-
-    function startQuiz(mode) {
-      state.quizMode = mode;
-      const pool = mode === 'mixed' ? QUIZ_BANK : QUIZ_BANK.filter(q => q.mode === mode);
-      state.quizQuestions = [...pool].sort(() => Math.random() - 0.5);
-      state.quizIndex = 0;
-      state.quizScore = 0;
-      state.quizAnswered = false;
-      renderQuiz();
-    }
-
-    function renderQuiz() {
-      const body = document.getElementById('quizBody');
-      const total = state.quizQuestions.length;
-      document.getElementById('quizScore').textContent = `得分：${state.quizScore}`;
-
-      if (state.quizIndex >= total) {
-        document.getElementById('quizProgress').textContent = `測驗完成`;
-        body.innerHTML = `
-          <div class="text-center py-6 space-y-4">
-            <div class="text-2xl font-bold text-[#2B2623] serif-title">你答對了 ${state.quizScore} / ${total} 題</div>
-            <p class="text-sm text-[#78716C]">可以切換其他測驗主題，或回到單元卡片複習不熟的項目。</p>
-            <button type="button" onclick="startQuiz('${state.quizMode}')" class="px-5 py-2.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] font-medium text-sm transition">再測驗一次</button>
-          </div>
-        `;
-        return;
-      }
-
-      const item = state.quizQuestions[state.quizIndex];
-      document.getElementById('quizProgress').textContent = `第 ${state.quizIndex + 1} 題 / 共 ${total} 題`;
-      body.innerHTML = `
-        <div class="text-base font-bold text-[#2B2623] leading-relaxed">${item.q}</div>
-        <div class="grid grid-cols-1 gap-2.5">
-          ${item.opts.map((opt, idx) => `
-            <button type="button" data-qopt="${idx}" onclick="answerQuiz(${idx})" class="qopt-btn w-full text-left px-4 py-3 rounded-xl border border-[#E6DFD5] bg-[#FAF7F2]/60 hover:border-[#C66B4F] hover:bg-[#FAF7F2] text-sm font-medium transition kr">${opt}</button>
-          `).join('')}
-        </div>
-        <div id="quizFeedback" class="hidden p-4 rounded-xl text-sm"></div>
-        <div class="flex justify-end">
-          <button id="quizNextBtn" type="button" onclick="nextQuiz()" class="hidden px-5 py-2 rounded-full bg-[#2B2623] text-[#FAF7F2] text-xs font-medium hover:bg-[#433C37] transition">下一題 →</button>
-        </div>
-      `;
-    }
-
-    function answerQuiz(idx) {
-      if (state.quizAnswered) return;
-      state.quizAnswered = true;
-      const item = state.quizQuestions[state.quizIndex];
-      const btns = document.querySelectorAll('.qopt-btn');
-      btns.forEach((b, i) => {
-        b.disabled = true;
-        if (i === item.ans) b.className = 'qopt-btn w-full text-left px-4 py-3 rounded-xl border-2 border-[#4A6B5D] bg-[#EDF3F0] text-[#2F473D] text-sm font-bold kr';
-        else if (i === idx) b.className = 'qopt-btn w-full text-left px-4 py-3 rounded-xl border-2 border-[#C66B4F] bg-[#FCF5F2] text-[#9A4E36] text-sm font-medium kr';
-      });
-      if (idx === item.ans) state.quizScore++;
-      document.getElementById('quizScore').textContent = `得分：${state.quizScore}`;
-      const fb = document.getElementById('quizFeedback');
-      fb.classList.remove('hidden');
-      fb.className = `p-4 rounded-xl text-xs leading-relaxed ${idx === item.ans ? 'bg-[#EDF3F0] text-[#2F473D] border border-[#D4E2DA]' : 'bg-[#FCF5F2] text-[#9A4E36] border border-[#F2DFD8]'}`;
-      fb.innerHTML = `<div class="font-bold text-sm mb-1">${idx === item.ans ? '答對了' : '再記一下喔'}</div><div>${item.exp}</div>`;
-      document.getElementById('quizNextBtn').classList.remove('hidden');
-    }
-
-    function nextQuiz() {
-      state.quizIndex++;
-      state.quizAnswered = false;
-      renderQuiz();
-    }
-
-    // ==================== MODAL & CANVAS ====================
-    const canvas = document.getElementById('drawCanvas');
-    const ctx = canvas.getContext('2d');
-    let drawing = false;
-
-    function getPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return { x: (clientX - rect.left) * (canvas.width / rect.width), y: (clientY - rect.top) * (canvas.height / rect.height) };
-    }
-
-    canvas.addEventListener('pointerdown', e => {
-      drawing = true;
-      const p = getPos(e);
-      ctx.beginPath();
-      ctx.moveTo(p.x, p.y);
-    });
-    canvas.addEventListener('pointermove', e => {
-      if (!drawing) return;
-      const p = getPos(e);
-      ctx.lineWidth = 10;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.strokeStyle = '#C66B4F';
-      ctx.lineTo(p.x, p.y);
-      ctx.stroke();
-    });
-    window.addEventListener('pointerup', () => { drawing = false; });
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    document.getElementById('clearCanvasBtn').addEventListener('click', clearCanvas);
-
-    function openModal(kind, id) {
-      const item = kind === 'vowel' ? VOWELS.find(v => v.id === id) : CONSONANTS.find(c => c.id === id);
-      if (!item) return;
-      document.getElementById('modalChar').textContent = item.char;
-      document.getElementById('modalTitle').textContent = `${kind === 'vowel' ? '母音' : '子音'} ${item.char}`;
-      document.getElementById('modalSub').textContent = `英文：${item.roma} ｜ 注音：${item.zhuyin}`;
-      document.getElementById('modalStrokeDesc').textContent = item.stroke;
-      document.getElementById('canvasGuideChar').textContent = item.char;
-      document.getElementById('modalExtraTip').textContent = `記憶訣竅：${item.tip}`;
-      document.getElementById('modalSpeakBtn').onclick = () => speakKr(kind === 'vowel' ? item.char : item.words[0].kr);
-      clearCanvas();
-      document.getElementById('strokeModal').classList.remove('hidden');
-    }
-
-    document.getElementById('closeModalBtn').addEventListener('click', () => {
-      document.getElementById('strokeModal').classList.add('hidden');
-    });
-    document.getElementById('strokeModal').addEventListener('click', e => {
-      if (e.target.id === 'strokeModal') document.getElementById('strokeModal').classList.add('hidden');
-    });
-
-    // ==================== NAVIGATION & EVENTS ====================
-    function switchTab(tab) {
-      state.activeTab = tab;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-      ['vowels', 'consonants', 'batchim', 'classification', 'quiz'].forEach(sec => {
-        document.getElementById(`sec-${sec}`).classList.toggle('hidden', sec !== tab);
-      });
-    }
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-    });
-
-    document.querySelectorAll('[data-vfilter]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.vowelFilter = btn.dataset.vfilter;
-        document.querySelectorAll('[data-vfilter]').forEach(b => b.classList.toggle('active', b === btn));
-        renderVowels();
-      });
-    });
-
-    document.querySelectorAll('[data-cfilter]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.consonantFilter = btn.dataset.cfilter;
-        document.querySelectorAll('[data-cfilter]').forEach(b => b.classList.toggle('active', b === btn));
-        renderConsonants();
-      });
-    });
-
-    document.querySelectorAll('.qmode-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.qmode-btn').forEach(b => {
-          b.classList.remove('active', 'bg-[#2B2623]', 'text-[#FAF7F2]');
-          b.classList.add('text-[#6B635B]');
-        });
-        btn.classList.add('active', 'bg-[#2B2623]', 'text-[#FAF7F2]');
-        btn.classList.remove('text-[#6B635B]');
-        startQuiz(btn.dataset.qmode);
-      });
-    });
-
-    document.getElementById('searchInput').addEventListener('input', e => {
-      state.searchQuery = e.target.value;
-      renderAll();
-    });
-
-    document.getElementById('bookmarkFilterBtn').addEventListener('click', () => {
-      state.onlyBookmarks = !state.onlyBookmarks;
-      document.getElementById('bookmarkBanner').classList.toggle('hidden', !state.onlyBookmarks);
-      renderAll();
-    });
-
-    document.getElementById('clearBookmarkFilterBtn').addEventListener('click', () => {
-      state.onlyBookmarks = false;
-      document.getElementById('bookmarkBanner').classList.add('hidden');
-      renderAll();
-    });
-
-    function renderAll() {
-      renderVowels();
-      renderConsonants();
-      renderBatchim();
-      renderClassification();
-    }
-
-    // Init
-    saveBookmarks();
-    renderAll();
-    startQuiz('mixed');
-  </script>
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-[#FAF7F2]/92 backdrop-blur-md border-b border-[#E6DFD5]">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4 pb-0 flex flex-col gap-3.5">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-center font-bold text-xl kr shadow-sm tracking-tight">한</div>
+<div>
+<h1 class="text-lg sm:text-xl font-bold text-[#2B2623] serif-title tracking-wide">EVA 韓文課複習手札</h1>
+<p class="text-xs text-[#78716C] mt-0.5">10/15 – 11/12 課堂講義與筆記系統化整理</p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 w-full sm:w-auto">
+<div class="relative flex-1 sm:w-64">
+<svg class="w-4 h-4 text-[#9C948B] absolute left-3.5 top-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+<input id="searchInput" type="search" placeholder="搜尋字母、注音、單字或中文..." class="w-full pl-9 pr-3.5 py-2 text-sm rounded-full border border-[#E2DAD0] bg-white/90 text-[#2B2623] placeholder-[#A8A096] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C66B4F]/30 focus:border-[#C66B4F]" />
+</div>
+<button id="speedToggleBtn" type="button" class="px-3 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] flex items-center gap-1 whitespace-nowrap transition shadow-2xs" title="切換發音語速">
+<span id="speedLabel">語速：慢 0.55x</span>
+</button>
+<button id="bookmarkFilterBtn" type="button" class="px-3.5 py-2 text-xs font-medium rounded-full border border-[#E2DAD0] bg-white hover:bg-[#FDF8F2] text-[#4A433D] flex items-center gap-1.5 whitespace-nowrap transition shadow-2xs">
+<svg class="w-3.5 h-3.5 text-[#C66B4F]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+<span class="hidden sm:inline">待複習</span>
+<span id="bookmarkCount" class="px-1.5 py-0.5 text-[11px] rounded-full bg-[#F4ECE4] text-[#9A4E36] font-semibold">0</span>
+</button>
+</div>
+</div>
+<!-- Clean Editorial Underline Tabs -->
+<nav class="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar" aria-label="主要單元">
+<button type="button" data-tab="vowels" class="tab-btn active py-2.5 text-sm whitespace-nowrap">一、母音 <span class="text-xs opacity-60 ml-0.5">21</span></button>
+<button type="button" data-tab="consonants" class="tab-btn py-2.5 text-sm whitespace-nowrap">二、子音 <span class="text-xs opacity-60 ml-0.5">19</span></button>
+<button type="button" data-tab="batchim" class="tab-btn py-2.5 text-sm whitespace-nowrap">三、終聲與雙收尾音</button>
+<button type="button" data-tab="classification" class="tab-btn py-2.5 text-sm whitespace-nowrap">四、七種終聲分類</button>
+<button type="button" data-tab="vocab" class="tab-btn py-2.5 text-sm whitespace-nowrap">五、單字區 <span id="vocabTabCount" class="text-xs opacity-60 ml-0.5">75</span></button>
+<button type="button" data-tab="quiz" class="tab-btn py-2.5 text-sm whitespace-nowrap">隨堂測驗</button>
+</nav>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7">
+<!-- Bookmark Filter Banner -->
+<div id="bookmarkBanner" class="hidden mb-6 p-3.5 rounded-2xl bg-[#FDF6EC] border border-[#EED9BD] flex items-center justify-between gap-3">
+<div class="text-xs sm:text-sm text-[#7C5329] flex items-center gap-2">
+<span class="font-semibold">僅顯示已收藏的「待複習」項目</span>
+<span class="hidden sm:inline text-[#9A7248]">（點擊卡片右上角星號即可切換）</span>
+</div>
+<button id="clearBookmarkFilterBtn" type="button" class="text-xs font-medium px-3 py-1.5 rounded-full bg-white border border-[#E4CAA7] text-[#7C5329] hover:bg-[#FAF0E2] transition">顯示全部</button>
+</div>
+<!-- Section 1: Vowels -->
+<section id="sec-vowels" class="space-y-7">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 01 · Vowels</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">母音 (모음) — 10 基本 ＋ 11 複合</h2>
+<p class="text-sm text-[#78716C] mt-1">點擊單字或喇叭圖示即可聆聽標準發音，點「筆順練習」可在方格畫布上描紅。</p>
+</div>
+<div class="flex items-center gap-1 bg-[#EFEAE2] p-1 rounded-full">
+<button type="button" data-vfilter="all" class="pill-btn active px-3.5 py-1.5 rounded-full text-xs font-medium">全部 21</button>
+<button type="button" data-vfilter="basic" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">基本 10</button>
+<button type="button" data-vfilter="compound" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">複合 11</button>
+</div>
+</div>
+<div id="vowelsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+<!-- Special Callout: 의 3 rules & Kinship notes from 11/05 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-2">
+<div class="card-paper rounded-2xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-[#2B2623] serif-title text-base">課堂重點：「의」的三種發音規則</h3>
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EEF2F6] text-[#4B5B76] font-medium">11/05 筆記</span>
+</div>
+<div class="space-y-2.5 text-sm">
+<div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
+<div>
+<span class="font-bold kr text-base text-[#4B5B76] mr-1.5">1. [의]</span>
+<span class="text-[#575049]">位在第一個字：</span>
+<span class="kr font-semibold text-[#2B2623]">의사</span>(醫生)、<span class="kr font-semibold text-[#2B2623]">의자</span>(椅子)、<span class="kr font-semibold text-[#2B2623]">의지</span>、<span class="kr font-semibold text-[#2B2623]">의외</span>
+</div>
+<button type="button" onclick="speakKr('의사, 의자')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
+</button>
+</div>
+<div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
+<div>
+<span class="font-bold kr text-base text-[#4B5B76] mr-1.5">2. [이]</span>
+<span class="text-[#575049]">非第一個字：</span>
+<span class="kr font-semibold text-[#2B2623]">예의</span> <span class="text-[#78716C]">[예이]</span> (禮貌)
+</div>
+<button type="button" onclick="speakKr('예의')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
+</button>
+</div>
+<div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] flex items-center justify-between gap-3">
+<div>
+<span class="font-bold kr text-base text-[#4B5B76] mr-1.5">3. [에]</span>
+<span class="text-[#575049]">助詞「的」：</span>
+<span class="kr font-semibold text-[#2B2623]">나의</span> <span class="text-[#78716C]">[나에]</span>、<span class="kr font-semibold text-[#2B2623]">나라의</span> <span class="text-[#78716C]">[나라에]</span>
+</div>
+<button type="button" onclick="speakKr('나의, 나라의')" class="shrink-0 w-8 h-8 rounded-full bg-white border border-[#E6DFD5] flex items-center justify-center text-[#4B5B76] hover:bg-[#EEF2F6]" title="朗讀">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>
+</button>
+</div>
+<div class="p-4 rounded-xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-between gap-3">
+<div>
+<div class="text-[11px] text-[#B8AFA6] tracking-wide">一句話記住三個規則（民主主義的意義）</div>
+<div class="font-bold kr text-base mt-0.5">민주주의의 의의 → [민주주이에 의이]</div>
+</div>
+<button type="button" onclick="speakKr('민주주의의 의의')" class="shrink-0 px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-xs font-medium transition">試聽</button>
+</div>
+</div>
+</div>
+<div class="card-paper rounded-2xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-[#2B2623] serif-title text-base">課堂單字補充：親屬稱謂與時間</h3>
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EDF3F0] text-[#4A6B5D] font-medium">11/05 & 11/12</span>
+</div>
+<div class="grid grid-cols-2 gap-3 text-sm">
+<div class="p-3.5 rounded-xl bg-[#FCF5F2] border border-[#F2DFD8]">
+<div class="text-xs font-bold text-[#B5593D] mb-2">女生稱呼 (여자)</div>
+<ul class="space-y-1.5 text-xs">
+<li class="flex justify-between items-center"><span><b class="kr text-sm">언니</b> 姐姐</span><button type="button" onclick="speakKr('언니')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">오빠</b> 哥哥</span><button type="button" onclick="speakKr('오빠')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">여동생</b> 妹妹</span><button type="button" onclick="speakKr('여동생')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">남동생</b> 弟弟</span><button type="button" onclick="speakKr('남동생')" class="text-[#B5593D] hover:opacity-70">▶</button></li>
+</ul>
+</div>
+<div class="p-3.5 rounded-xl bg-[#F3F6FA] border border-[#DDE4EE]">
+<div class="text-xs font-bold text-[#4B5B76] mb-2">男生稱呼與時間</div>
+<ul class="space-y-1.5 text-xs">
+<li class="flex justify-between items-center"><span><b class="kr text-sm">누나</b> 姐姐</span><button type="button" onclick="speakKr('누나')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">형</b> 哥哥</span><button type="button" onclick="speakKr('형')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">어제</b> 昨天</span><button type="button" onclick="speakKr('어제')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
+<li class="flex justify-between items-center"><span><b class="kr text-sm">오늘 / 내일</b> 今/明天</span><button type="button" onclick="speakKr('오늘, 내일')" class="text-[#4B5B76] hover:opacity-70">▶</button></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-4 p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EDE6DC] text-xs text-[#575049] flex flex-wrap gap-x-3 gap-y-1.5 items-center">
+<span class="font-semibold text-[#2B2623]">11/12 單字：</span>
+<button type="button" onclick="speakKr('지도')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">지도 地圖</button>
+<button type="button" onclick="speakKr('커피')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">커피 咖啡</button>
+<button type="button" onclick="speakKr('구두')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">구두 皮鞋</button>
+<button type="button" onclick="speakKr('지하철')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">지하철 地鐵</button>
+<button type="button" onclick="speakKr('사과')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">사과 蘋果/道歉</button>
+<button type="button" onclick="speakKr('노래방')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">노래방 KTV</button>
+<button type="button" onclick="speakKr('돼지')" class="hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">돼지 豬</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Consonants -->
+<section id="sec-consonants" class="hidden space-y-7">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 02 · Consonants</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">子音 (자음) — 14 基本 ＋ 5 雙子音</h2>
+<p class="text-sm text-[#78716C] mt-1">對照「第一個字 (字首)」與「非第一個字 (字中/母音間)」發音差異，搭配氣流紙張測試練習。</p>
+</div>
+<div class="flex flex-wrap items-center gap-1 bg-[#EFEAE2] p-1 rounded-full">
+<button type="button" data-cfilter="all" class="pill-btn active px-3.5 py-1.5 rounded-full text-xs font-medium">全部 19</button>
+<button type="button" data-cfilter="plain" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">基本平音 10</button>
+<button type="button" data-cfilter="aspirated" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">激音/氣音 4</button>
+<button type="button" data-cfilter="tense" class="pill-btn px-3.5 py-1.5 rounded-full text-xs font-medium">硬音/雙子音 5</button>
+</div>
+</div>
+<div id="consonantsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+<!-- Paper Air Test Callout from 11/12 Handout -->
+<div class="card-paper rounded-2xl p-6">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+<h3 class="font-bold text-[#2B2623] serif-title text-base">講義實戰：「拿一張紙放嘴巴前」三音對比練習</h3>
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#FCF5F2] text-[#B5593D] font-medium">11/12 講義</span>
+</div>
+<p class="text-xs text-[#78716C] mb-4">平音（輕柔、紙不動） vs 激音/氣音（強氣流、紙會明顯飄動） vs 硬音/緊音（喉嚨憋氣彈出、接近國語四聲，紙不動）</p>
+<div id="contrastGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+</div>
+</section>
+<!-- Section 3: Batchim -->
+<section id="sec-batchim" class="hidden space-y-7">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 03 · Batchim</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">終聲 / 收尾音 (받침) — 七個代表音與雙收尾音</h2>
+<p class="text-sm text-[#78716C] mt-1">終聲收音要乾脆「把音吃掉」或用鼻音收尾。雙收尾音共 11 個，永遠只唸其中一邊的音。</p>
+</div>
+<div id="batchimGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+<!-- Double Batchim Section -->
+<div class="card-paper rounded-2xl p-6 space-y-5">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div>
+<h3 class="font-bold text-[#2B2623] serif-title text-lg">雙收尾音 (複收尾音 / 겹받침) — 11 種寫法</h3>
+<p class="text-sm text-[#78716C] mt-0.5">黃金口訣：<span class="font-semibold text-[#4A6B5D]">先記住「唸右邊」的 3 個（ㄺ、ㄻ、ㄿ），其餘 8 個通通唸左邊。</span></p>
+</div>
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#EDF3F0] text-[#4A6B5D] font-medium">11/12 講義 & 筆記</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<div class="rounded-xl border border-[#D4E2DA] bg-[#F4F8F6] p-4">
+<h4 class="font-bold text-[#355245] text-sm mb-3">唸「右邊」字母 (3 個必背)</h4>
+<div id="doubleRightList" class="space-y-2.5"></div>
+</div>
+<div class="rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4">
+<h4 class="font-bold text-[#2B2623] text-sm mb-3">唸「左邊」字母 (8 個)</h4>
+<div id="doubleLeftList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+</div>
+</div>
+<div class="pt-2">
+<h4 class="font-bold text-[#2B2623] text-sm mb-3">講義終聲易混淆對比練習（點擊試聽）：</h4>
+<div id="batchimPairsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+</div>
+</div>
+</section>
+<!-- Section 4: 7 Final Consonant Classification -->
+<section id="sec-classification" class="hidden space-y-7">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 04 · 7 Categories</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">各種終聲寫法，只有「七種終聲」的分類總表</h2>
+<p class="text-sm text-[#78716C] mt-1">韓文共有 27 種終聲寫法（16 單收尾 ＋ 11 雙收尾；<span class="font-semibold text-[#B5593D]">ㄸ, ㅃ, ㅉ 絕不會當終聲</span>），但發音全部歸類為 7 個代表音。</p>
+</div>
+<div class="flex flex-wrap gap-2" id="classFilterPills"></div>
+<div id="classificationCards" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+<!-- Summary Table -->
+<div class="card-paper rounded-2xl overflow-hidden">
+<div class="px-5 py-3.5 bg-[#2B2623] text-[#FAF7F2] flex items-center justify-between">
+<h3 class="font-bold text-sm sm:text-base serif-title">27 種終聲寫法 → 7 大代表音對照一覽表</h3>
+<span class="text-xs text-[#B8AFA6]">對照 11/12 講義</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-[#FAF7F2] text-[#78716C] border-b border-[#E6DFD5]">
+<tr>
+<th class="px-4 py-3 font-semibold">代表音 (7種)</th>
+<th class="px-4 py-3 font-semibold">音標 / 近似收音</th>
+<th class="px-4 py-3 font-semibold">單收尾音 (16種)</th>
+<th class="px-4 py-3 font-semibold">雙收尾音 (11種)</th>
+<th class="px-4 py-3 font-semibold">講義代表例字</th>
+</tr>
+</thead>
+<tbody id="classTableBody" class="divide-y divide-[#F0EAE1]"></tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 5: Vocabulary -->
+<section id="sec-vocab" class="hidden space-y-7">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 05 · Vocabulary</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">講義單字總整理</h2>
+<p class="text-sm text-[#78716C] mt-1">收錄 10/15 – 11/12 五份講義與課堂筆記出現的所有單字與短句，點擊喇叭即可慢速發音複習。</p>
+</div>
+<div class="flex flex-wrap items-center gap-1 bg-[#EFEAE2] p-1 rounded-full">
+<button type="button" data-vocabfilter="all" class="pill-btn active px-3 py-1.5 rounded-full text-xs font-medium">全部</button>
+<button type="button" data-vocabfilter="people" class="pill-btn px-3 py-1.5 rounded-full text-xs font-medium">人物稱謂</button>
+<button type="button" data-vocabfilter="life" class="pill-btn px-3 py-1.5 rounded-full text-xs font-medium">生活場所</button>
+<button type="button" data-vocabfilter="food" class="pill-btn px-3 py-1.5 rounded-full text-xs font-medium">食物動植</button>
+<button type="button" data-vocabfilter="time" class="pill-btn px-3 py-1.5 rounded-full text-xs font-medium">時間身體自然</button>
+<button type="button" data-vocabfilter="action" class="pill-btn px-3 py-1.5 rounded-full text-xs font-medium">動詞與會話</button>
+</div>
+</div>
+<div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+<!-- Section 6: Quiz -->
+<section id="sec-quiz" class="hidden space-y-7">
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div>
+<span class="text-[11px] font-semibold uppercase tracking-widest text-[#C66B4F]">Chapter 05 · Practice</span>
+<h2 class="text-2xl font-bold text-[#2B2623] serif-title mt-0.5">隨堂複習測驗</h2>
+<p class="text-sm text-[#78716C] mt-1">挑一個主題馬上測試自己的記憶，每題都會附上講義口訣解析。</p>
+</div>
+<div class="flex flex-wrap gap-1.5 bg-[#EFEAE2] p-1 rounded-full">
+<button type="button" data-qmode="mixed" class="qmode-btn active px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#2B2623] text-[#FAF7F2]">綜合隨機</button>
+<button type="button" data-qmode="batchim7" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">七種終聲</button>
+<button type="button" data-qmode="double" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">雙收尾音</button>
+<button type="button" data-qmode="consonant_pos" class="qmode-btn px-3.5 py-1.5 rounded-full text-xs font-medium text-[#6B635B] hover:text-[#2B2623]">字首 vs 字中</button>
+</div>
+</div>
+<div class="max-w-2xl mx-auto card-paper rounded-2xl p-6 sm:p-7">
+<div class="flex items-center justify-between text-xs text-[#78716C] mb-5 pb-3 border-b border-[#F0EAE1]">
+<span id="quizProgress">第 1 題 / 共 10 題</span>
+<span id="quizScore" class="font-semibold text-[#4A6B5D]">得分：0</span>
+</div>
+<div id="quizBody" class="space-y-4"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="border-t border-[#E6DFD5] bg-white/80 mt-14 py-5 px-4 sm:px-6 text-xs text-[#78716C]">
+<div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+<div>內容統整自 EVA 韓文課講義與筆記 (2026/10/15 – 11/12)，並整合公信力學習資源補充筆順與發音細節：</div>
+<div class="flex flex-wrap gap-4">
+<a href="https://yeslearnkorean.com/korean-alphabet-guide-susu/" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">蘇蘇的韓文手札 (40音)</a>
+<a href="https://yeslearnkorean.com/korean-double-batchim-guide/" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">蘇蘇的韓文手札 (雙尾音)</a>
+<a href="https://freekoreanschool.com/learn/zh-tw/letter-writing" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">Korean School 筆順</a>
+<a href="https://zh.wikipedia.org/zh-tw/%E6%9C%9D%E9%B2%9C%E8%AF%AD%E9%9F%B3%E7%B3%BB" target="_blank" rel="noopener" class="text-[#4B5B76] hover:text-[#C66B4F] underline decoration-[#D6CEC2] underline-offset-4">維基百科韓語音系</a>
+</div>
+</div>
+</footer>
+<!-- Stroke Order & Detail Modal -->
+<div id="strokeModal" class="hidden fixed inset-0 z-50 bg-[#2B2623]/45 backdrop-blur-xs flex items-center justify-center p-4">
+<div class="bg-[#FAF7F2] border border-[#E6DFD5] rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between border-b border-[#E6DFD5] pb-3.5">
+<div class="flex items-center gap-3.5">
+<div class="w-14 h-14 rounded-2xl bg-white border border-[#E6DFD5] flex items-center justify-center">
+<span id="modalChar" class="kr text-4xl font-black text-[#2B2623]">ㅏ</span>
+</div>
+<div>
+<h3 id="modalTitle" class="font-bold text-[#2B2623] text-lg serif-title">母音 ㅏ</h3>
+<p id="modalSub" class="text-xs text-[#78716C] mt-0.5">英文：a ｜ 注音：ㄚ</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button id="modalSpeakBtn" type="button" class="px-3.5 py-1.5 rounded-full bg-[#2B2623] text-[#FAF7F2] text-xs font-medium hover:bg-[#433C37] transition">朗讀發音</button>
+<button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-white border border-[#E6DFD5] hover:bg-[#EFEAE2] text-[#575049] text-sm font-semibold">✕</button>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-[#E6DFD5] p-3.5 text-sm text-[#4A433D]">
+<div class="font-semibold text-[#2B2623] text-xs mb-1">筆順寫法步驟（由上至下、由左至右）</div>
+<p id="modalStrokeDesc" class="text-xs leading-relaxed text-[#575049]"></p>
+</div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium text-[#78716C]">手寫描紅練習區（滑鼠或手指直接書寫）</span>
+<button id="clearCanvasBtn" type="button" class="text-xs px-3 py-1 rounded-full bg-white border border-[#E2DAD0] hover:bg-[#EFEAE2] text-[#4A433D] font-medium">清除重寫</button>
+</div>
+<div class="relative mx-auto w-60 h-60 rounded-2xl border border-[#D6CEC2] bg-white overflow-hidden select-none shadow-inner">
+<div id="canvasGuideChar" class="kr absolute inset-0 flex items-center justify-center text-[145px] font-bold text-[#EDE7DF] pointer-events-none select-none">ㅏ</div>
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute left-1/2 top-0 bottom-0 border-l border-dashed border-[#E6DFD5]"></div>
+<div class="absolute top-1/2 left-0 right-0 border-t border-dashed border-[#E6DFD5]"></div>
+</div>
+<canvas id="drawCanvas" width="240" height="240" class="relative z-10 w-full h-full cursor-crosshair"></canvas>
+</div>
+</div>
+<div id="modalExtraTip" class="text-xs text-[#6B4F35] bg-[#FDF6EC] border border-[#EED9BD] rounded-2xl p-3.5 leading-relaxed"></div>
+</div>
+</div>
+<script>
+// ==================== DATA ====================
+const VOWELS = [
+{
+id: 'v_a', char: 'ㅏ', type: 'basic', roma: 'a', zhuyin: 'ㄚ',
+words: [{ kr: '아버지', mean: '爸爸' }, { kr: '오빠', mean: '哥哥(女生叫)' }, { kr: '사랑해', mean: '我愛你' }],
+tip: '跟注音符號「ㄚ」很像，嘴巴自然張大、舌頭平放。字形一豎向右伸出（朝陽光明亮方向）。',
+stroke: '共 2 畫：① 先寫左邊長直線（由上而下）；② 再寫中間短橫線（由左而右）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_ya', char: 'ㅑ', type: 'basic', roma: 'ya', zhuyin: 'ㄧㄚ',
+words: [{ kr: '야구', mean: '棒球' }, { kr: '야채', mean: '蔬菜' }],
+tip: '「ㅏ」多加一橫＝多一個「ㄧ」滑音，從「ㄧ」快速滑向「ㄚ」。',
+stroke: '共 3 畫：① 先寫左邊長直線（上→下）；② 上短橫（左→右）；③ 下短橫（左→右）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_eo', char: 'ㅓ', type: 'basic', roma: 'eo', zhuyin: 'ㄛ (不圓唇)',
+words: [{ kr: '어디', mean: '哪裡' }, { kr: '어머니', mean: '媽媽' }, { kr: '영어', mean: '英語' }, { kr: '먹었어요?', mean: '吃了嗎?' }],
+tip: '筆記重點：跟注音符號「ㄛ」很像！但嘴型比「ㅏ」小且放鬆、不要嘟圓；唸「어」時把人中往直的方向拉長一點（區分 영어 vs 용어）。',
+stroke: '共 2 畫：① 先寫左邊短橫線（由左而右）；② 再寫右邊長直線（由上而下）。',
+source: '10/19 & 11/12 筆記'
+},
+{
+id: 'v_yeo', char: 'ㅕ', type: 'basic', roma: 'yeo', zhuyin: 'ㄧㄛ',
+words: [{ kr: '여자', mean: '女生' }, { kr: '여우', mean: '狐狸' }, { kr: '여동생', mean: '妹妹' }],
+tip: '「ㅓ」多加一橫，先準備好「ㄧ」的嘴型再滑向放鬆的「ㅓ」。',
+stroke: '共 3 畫：① 上短橫（左→右）；② 下短橫（左→右）；③ 右邊長直線（上→下）。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'v_o', char: 'ㅗ', type: 'basic', roma: 'o', zhuyin: 'ㄛ / ㄡ(嘴型固定)',
+words: [{ kr: '오빠', mean: '哥哥' }, { kr: '소', mean: '牛' }, { kr: '도로', mean: '道路' }, { kr: '용어', mean: '用語' }],
+tip: '筆記重點：跟注音「ㄛ」很像！嘴唇用力嘟成小圓形「O」固定不動，結尾不要滑成「ㄨ」。',
+stroke: '共 2 畫：① 先寫上方短直線（由上而下）；② 再寫下方長橫線（由左而右）。',
+source: '10/19 & 11/12 筆記'
+},
+{
+id: 'v_yo', char: 'ㅛ', type: 'basic', roma: 'yo', zhuyin: 'ㄧㄡ(嘴型固定)',
+words: [{ kr: '요리', mean: '料理' }, { kr: '더워요', mean: '好熱' }, { kr: '가요', mean: '去' }],
+tip: '「ㅗ」多一豎，由「ㄧ」滑向圓唇固定的「ㅗ」，常出現在敬語句尾「-요」。',
+stroke: '共 3 畫：① 左短豎（上→下）；② 右短豎（上→下）；③ 下方長橫線（左→右）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_u', char: 'ㅜ', type: 'basic', roma: 'u / wu', zhuyin: 'ㄨ',
+words: [{ kr: '우유', mean: '牛奶' }, { kr: '누나', mean: '姐姐' }, { kr: '구두', mean: '皮鞋' }],
+tip: '跟注音「ㄨ」一樣！像哭臉「ㅜㅜ」一樣把嘴唇嘟出去。',
+stroke: '共 2 畫：① 先寫上方長橫線（由左而右）；② 再寫下方短直線（由上而下）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_yu', char: 'ㅠ', type: 'basic', roma: 'yu', zhuyin: 'ㄧㄨ',
+words: [{ kr: '우유', mean: '牛奶' }, { kr: '뉴스', mean: '新聞' }],
+tip: '網路表情「ㅠㅠ」(哭哭)，由「ㄧ」滑向嘟嘴的「ㅜ」。',
+stroke: '共 3 畫：① 上方長橫線（左→右）；② 左短豎（上→下）；③ 右短豎（上→下）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_eu', char: 'ㅡ', type: 'basic', roma: 'eu', zhuyin: 'ㄜ / 台語「蚵仔煎的蚵」',
+words: [{ kr: '으뜸', mean: '第一' }, { kr: '크다', mean: '大' }, { kr: '쓰다', mean: '寫/苦' }],
+tip: '筆記重點：很像台語「蚵仔煎的蚵」、接近「ㄜ」的音！嘴角向兩側拉平（像假笑）、上下齒輕咬，不要嘟嘴。',
+stroke: '共 1 畫：① 一條橫線（由左而右）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_i', char: 'ㅣ', type: 'basic', roma: 'i', zhuyin: 'ㄧ',
+words: [{ kr: '비', mean: '雨' }, { kr: '언니', mean: '姐姐' }, { kr: '바지', mean: '褲子' }],
+tip: '跟注音「ㄧ」、數字「1」幾乎一樣，嘴角向兩側拉開。',
+stroke: '共 1 畫：① 一條直線（由上而下）。',
+source: '10/19 筆記'
+},
+{
+id: 'v_ae', char: 'ㅐ', type: 'compound', roma: 'ae', zhuyin: 'ㄝ(嘴張大)',
+words: [{ kr: '사랑해', mean: '我愛你' }, { kr: '아내', mean: '太太' }, { kr: '개', mean: '狗' }],
+tip: 'ㅏ + ㅣ 組成。現代韓語口語跟「ㅔ」幾乎同音，但傳統上「ㅐ」嘴巴張得比「ㅔ」大一點（約兩指寬）。',
+stroke: '共 3 畫：① 左長豎；② 中短橫；③ 右長豎（由上而下）。',
+source: '10/19 筆記 + 補充'
+},
+{
+id: 'v_e', char: 'ㅔ', type: 'compound', roma: 'e', zhuyin: 'ㄝ(嘴放鬆)',
+words: [{ kr: '어제', mean: '昨天' }, { kr: '네', mean: '是的' }, { kr: '세계', mean: '世界' }],
+tip: 'ㅓ + ㅣ 組成。嘴角放鬆、張開度較「ㅐ」小，類似中文「耶」的後半段。',
+stroke: '共 3 畫：① 左短橫；② 中長豎；③ 右長豎（由上而下）。',
+source: '11/12 筆記 + 補充'
+},
+{
+id: 'v_yae', char: 'ㅒ', type: 'compound', roma: 'yae', zhuyin: 'ㄧㄝ',
+words: [{ kr: '얘기', mean: '故事/聊天' }, { kr: '얘', mean: '這孩子' }],
+tip: 'ㅑ + ㅣ 組成。從短促的「ㄧ」滑向「ㅐ」，現代口語與「ㅖ」同音。',
+stroke: '共 4 畫：① 左長豎；② 上短橫；③ 下短橫；④ 右長豎。',
+source: '10/19 筆記'
+},
+{
+id: 'v_ye', char: 'ㅖ', type: 'compound', roma: 'ye', zhuyin: 'ㄧㄝ',
+words: [{ kr: '예의', mean: '禮貌' }, { kr: '예쁘다', mean: '漂亮' }, { kr: '시계', mean: '手錶' }],
+tip: 'ㅕ + ㅣ 組成。先發「ㄧ」再滑向「ㅔ」。當前面有子音時（如 계）有時會簡讀成 [게]。',
+stroke: '共 4 畫：① 上短橫；② 下短橫；③ 中長豎；④ 右長豎。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'v_wa', char: 'ㅘ', type: 'compound', roma: 'wa', zhuyin: 'ㄨㄚ',
+words: [{ kr: '와우', mean: '哇嗚' }, { kr: '과일', mean: '水果' }, { kr: '사과', mean: '蘋果/道歉' }],
+tip: 'ㅗ + ㅏ 組成。由圓唇「ㅗ」快速滑向張大嘴的「ㅏ」，就是中文驚嘆「哇！」。',
+stroke: '共 4 畫：① 上短豎；② 下橫線；③ 右長豎；④ 右短橫。',
+source: '10/19 筆記'
+},
+{
+id: 'v_wae', char: 'ㅙ', type: 'compound', roma: 'wae', zhuyin: 'ㄨㄝ',
+words: [{ kr: '왜요?', mean: '為什麼?' }, { kr: '돼지', mean: '豬' }],
+tip: 'ㅗ + ㅐ 組成。現代韓語中「ㅙ、ㅚ、ㅞ」三個音幾乎相同，都唸「ㄨㄝ」。',
+stroke: '共 5 畫：① 先寫「ㅗ」(2畫)；② 再寫「ㅐ」(3畫)。',
+source: '10/19 & 11/12 筆記'
+},
+{
+id: 'v_oe', char: 'ㅚ', type: 'compound', roma: 'oe', zhuyin: 'ㄨㄝ',
+words: [{ kr: '외', mean: '外' }, { kr: '해외', mean: '海外' }, { kr: '외국인', mean: '外國人' }],
+tip: 'ㅗ + ㅣ 組成。注意不是唸「ㄛㄧ」，現代標準發音唸作「ㄨㄝ」！',
+stroke: '共 3 畫：① 短豎；② 橫線；③ 右邊長豎。',
+source: '10/19 筆記'
+},
+{
+id: 'v_wo', char: 'ㅝ', type: 'compound', roma: 'wo', zhuyin: 'ㄨㄛ',
+words: [{ kr: '더워요', mean: '好熱' }, { kr: '추워요', mean: '好冷' }, { kr: '원', mean: '韓元' }],
+tip: 'ㅜ + ㅓ 組成。由嘟嘴的「ㅜ」滑向放鬆的「ㅓ」，接近「ㄨㄛ」。',
+stroke: '共 4 畫：① 長橫；② 下短豎；③ 短橫；④ 右長豎。',
+source: '10/19 筆記'
+},
+{
+id: 'v_we', char: 'ㅞ', type: 'compound', roma: 'we', zhuyin: 'ㄨㄝ',
+words: [{ kr: '웨딩', mean: '婚禮 (Wedding)' }, { kr: '웹툰', mean: '網漫' }],
+tip: 'ㅜ + ㅔ 組成。多用於外來語（如 Wedding 웨딩），發音為「ㄨㄝ」。',
+stroke: '共 5 畫：① 先寫「ㅜ」(2畫)；② 再寫「ㅔ」(3畫)。',
+source: '10/19 筆記'
+},
+{
+id: 'v_wi', char: 'ㅟ', type: 'compound', roma: 'wi', zhuyin: 'ㄨㄧ',
+words: [{ kr: '위', mean: '上面' }, { kr: '가위', mean: '剪刀' }],
+tip: 'ㅜ + ㅣ 組成。由嘟嘴「ㅜ」快速滑向拉平的「ㅣ」，接近英文 We。',
+stroke: '共 3 畫：① 長橫；② 下短豎；③ 右長豎。',
+source: '10/19 筆記'
+},
+{
+id: 'v_ui', char: 'ㅢ', type: 'compound', roma: 'ui', zhuyin: 'ㅡ+ㄧ (三種讀音)',
+words: [{ kr: '의사', mean: '醫生' }, { kr: '의자', mean: '椅子' }, { kr: '예의', mean: '禮貌' }],
+tip: '先拉平嘴角發「ㅡ」，再滑向「ㅣ」。記得 11/05 筆記三規則：字首 [의]、非字首 [이]、助詞「的」[에]！',
+stroke: '共 2 畫：① 上方橫線（左→右）；② 右邊直線（上→下）。',
+source: '11/05 筆記'
+}
+];
+const CONSONANTS = [
+{
+id: 'c_g', char: 'ㄱ', cat: 'plain', roma: 'g / k', zhuyin: 'ㄎ / ㄍ',
+initial: '字首偏送氣「ㄎ」(如 가구 的第一個 가)',
+nonInitial: '非字首/母音間濁化為「ㄍ」(如 아기、가구 的第二個 구)',
+words: [{ kr: '고기', mean: '肉' }, { kr: '가구', mean: '傢俱' }, { kr: '가요', mean: '去' }],
+tip: '像舌根抬起抵住軟顎的形狀。字首唸輕柔「ㄎ」，夾在母音中間時變「ㄍ」。',
+stroke: '共 1 畫：① 一筆完成，由左向右畫橫線，接著直接轉折向下。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_n', char: 'ㄴ', cat: 'plain', roma: 'n', zhuyin: 'ㄋ',
+initial: '「ㄋ」(舌尖抵住上齒齦鼻音)',
+nonInitial: '「ㄋ」(同字首，發音穩定)',
+words: [{ kr: '누나', mean: '姐姐' }, { kr: '노래', mean: '歌' }, { kr: '내일', mean: '明天' }],
+tip: '像舌尖往上頂住上排牙齒後方的形狀，氣流從鼻腔出來。',
+stroke: '共 1 畫：① 一筆完成，由上向下畫豎線，再直接轉折向右畫橫線。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_d', char: 'ㄷ', cat: 'plain', roma: 'd / t', zhuyin: 'ㄊ / ㄉ',
+initial: '字首偏送氣「ㄊ」(如 도로 的 도)',
+nonInitial: '非字首/母音間濁化為「ㄉ」(如 바다 的 다、구두 的 두)',
+words: [{ kr: '바다', mean: '大海' }, { kr: '도로', mean: '道路' }, { kr: '구두', mean: '皮鞋' }],
+tip: '「ㄴ」上面多一橫蓋子。字首偏「ㄊ」但氣流輕（紙不動），字中變「ㄉ」。',
+stroke: '共 2 畫：① 先寫上方橫線（左→右）；② 再寫「ㄴ」形（下→右）。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_r', char: 'ㄹ', cat: 'plain', roma: 'r / l', zhuyin: 'ㄌ',
+initial: '「ㄌ / r」(外來語多為 r/l，固有詞少見)',
+nonInitial: '母音間輕彈舌「r / ㄌ」(如 다리、도로)；作終聲時為「l」',
+words: [{ kr: '도로', mean: '道路' }, { kr: '노래', mean: '歌' }, { kr: '지하철', mean: '地鐵' }],
+tip: '像彎曲彈動的舌頭！母音間舌尖輕輕彈擊上顎一次即可，不要捲舌太重。',
+stroke: '共 3 畫：① 上橫轉折下豎；② 中橫線；③ 下豎轉折右橫。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_m', char: 'ㅁ', cat: 'plain', roma: 'm', zhuyin: 'ㄇ',
+initial: '「ㄇ」(雙唇緊閉鼻音)',
+nonInitial: '「ㄇ」(同字首)',
+words: [{ kr: '어머니', mean: '媽媽' }, { kr: '엄마', mean: '媽媽' }, { kr: '머리', mean: '頭' }],
+tip: '形狀就像閉起來的「嘴巴 (Mouth)」，雙唇緊閉後張開。',
+stroke: '共 3 畫：① 左豎線；② 上橫轉折右豎；③ 下橫線封口。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_b', char: 'ㅂ', cat: 'plain', roma: 'b / p', zhuyin: 'ㄆ / ㄅ',
+initial: '字首偏送氣「ㄆ」(如 바보 的 첫 바、바지 的 바)',
+nonInitial: '非字首/母音間濁化為「ㄅ」(如 바보 的 보)',
+words: [{ kr: '바보', mean: '傻瓜' }, { kr: '바다', mean: '大海' }, { kr: '바지', mean: '褲子' }],
+tip: '經典記憶單字「바보」(傻瓜)：第一個字唸「ㄆㄚ」，第二個字唸「ㄅㄛ」！',
+stroke: '共 4 畫：① 左豎；② 右豎；③ 中橫；④ 下橫。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_s', char: 'ㅅ', cat: 'plain', roma: 's (遇ㅣ變sh)', zhuyin: 'ㄙ (遇ㅣ變ㄒ)',
+initial: '「ㄙ」；後方接「ㅣ / ㅑ / ㅕ / ㅛ / ㅠ」時顎化為「ㄒ」',
+nonInitial: '同字首規則（遇ㅣ變ㄒ，不濁化）',
+words: [{ kr: '소', mean: '牛' }, { kr: '사랑해', mean: '我愛你' }, { kr: '사과', mean: '蘋果/道歉' }],
+tip: '像牙齒形狀，氣流從齒縫輕柔磨擦而出。遇到「ㅣ」母音會自動變成「ㄒ」（如 시간 時間）。',
+stroke: '共 2 畫：① 先寫左撇（上→左下）；② 再從中間偏上寫右捺（右下）。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_ng', char: 'ㅇ', cat: 'plain', roma: '無音 / ng', zhuyin: '不發音 / [ng]',
+initial: '作初聲（字首/左或上）時完全「不發音」，只佔位置',
+nonInitial: '作終聲（字底）時發鼻音「[ng]」（如 방 房間）',
+words: [{ kr: '아이', mean: '小孩' }, { kr: '오이', mean: '小黃瓜' }, { kr: '방', mean: '房間' }],
+tip: '在上面/左邊是「空氣（沒聲音）」；掉到下面當終聲時才會發出「[ng]」鼻音。',
+stroke: '共 1 畫：① 由頂端逆時針畫一個圓圈封口。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_j', char: 'ㅈ', cat: 'plain', roma: 'j / ch', zhuyin: 'ㄘ/ㄑ (字首) ・ ㄗ/ㄐ (字中)',
+initial: '字首偏送氣「ㄘ」（遇ㅣ/ㅑ等母音為「ㄑ」，如 지도 地圖）',
+nonInitial: '非字首/母音間濁化為「ㄗ / ㄐ」（如 바지 褲子、아버지 爸爸）',
+words: [{ kr: '지도', mean: '地圖' }, { kr: '바지', mean: '褲子' }, { kr: '지하철', mean: '地鐵' }],
+tip: '在「ㅅ」上面加一頂帽子。記住：바지 (褲子) 的 지 在第二字要濁化成「ㄐㄧ」！',
+stroke: '共 2 畫：① 上橫轉折左撇；② 右捺（或先橫，再寫ㅅ）。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_h', char: 'ㅎ', cat: 'plain', roma: 'h', zhuyin: 'ㄏ',
+initial: '「ㄏ」(比中文輕柔，從喉嚨深處呼氣)',
+nonInitial: '位於母音間常「弱化或脫落」不發音（如 사랑해 口語常偏 사랑애）',
+words: [{ kr: '사랑해', mean: '我愛你' }, { kr: '해외', mean: '海外' }, { kr: '하루', mean: '一天' }],
+tip: '像戴帽子的「ㅇ」，唸的時候像輕輕嘆氣「ㅎ」。在字中夾在兩個母音間時常常會默默消失！',
+stroke: '共 3 畫：① 頂端短點/短橫；② 中間長橫線；③ 下方圓圈。',
+source: '10/19 筆記 + 補充'
+},
+{
+id: 'c_ch', char: 'ㅊ', cat: 'aspirated', roma: 'ch', zhuyin: 'ㄘ / ㄑ(遇ㅣ) + 強氣流',
+initial: '用力送氣的「ㄘ」（遇ㅣ/ㅑ/ㅕ等為「ㄑ」，如 지하철 地鐵）',
+nonInitial: '同字首，維持強烈送氣（不會濁化）',
+words: [{ kr: '지하철', mean: '地鐵' }, { kr: '체리', mean: '櫻桃' }, { kr: '김치', mean: '泡菜' }],
+tip: '激音（氣音）家族！在「ㅈ」上面多加一點，紙放嘴巴前唸會明顯飄動。',
+stroke: '共 3 畫：① 上方短點；② 橫線轉折左撇；③ 右捺。',
+source: '10/19 & 11/05 筆記'
+},
+{
+id: 'c_k', char: 'ㅋ', cat: 'aspirated', roma: 'k', zhuyin: 'ㄎ (強氣流)',
+initial: '用力送氣的「ㄎ」(Coffee 的 K)',
+nonInitial: '同字首，維持強烈送氣（如 쿠키 餅乾）',
+words: [{ kr: '커피', mean: '咖啡' }, { kr: '커요', mean: '大' }, { kr: '콩', mean: '豆子' }],
+tip: '「ㄱ」多加一橫＝氣流加倍！講義例字：커요 (大)、콩 (豆)、커피 (咖啡)。',
+stroke: '共 2 畫：① 橫折向下；② 中間橫線（左→右）。',
+source: '11/12 講義 & 筆記'
+},
+{
+id: 'c_t', char: 'ㅌ', cat: 'aspirated', roma: 't', zhuyin: 'ㄊ (強氣流)',
+initial: '用力送氣的「ㄊ」',
+nonInitial: '同字首，維持強烈送氣（如 기타 吉他、스타 明星）',
+words: [{ kr: '토끼', mean: '兔子' }, { kr: '탈', mean: '面具' }, { kr: '타다', mean: '搭乘' }],
+tip: '「ㄷ」中間多一橫＝像英文 E。氣流強，紙放嘴前會動！講義例字：토끼 (兔子)、탈 (面具)。',
+stroke: '共 3 畫：① 上橫；② 中橫；③ 左豎轉折下橫。',
+source: '10/19 筆記 & 11/12 講義'
+},
+{
+id: 'c_p', char: 'ㅍ', cat: 'aspirated', roma: 'p', zhuyin: 'ㄆ (強氣流)',
+initial: '用力送氣的「ㄆ」',
+nonInitial: '同字首，維持強烈送氣（如 커피 咖啡的 피）',
+words: [{ kr: '포도', mean: '葡萄' }, { kr: '커피', mean: '咖啡' }, { kr: '팔', mean: '手臂' }],
+tip: '雙唇緊閉後用力噴氣！講義例字：포도 (葡萄)、팔 (手臂)、풀 (膠水)。',
+stroke: '共 4 畫：① 上橫；② 左豎；③ 右豎；④ 下橫。',
+source: '10/19 筆記 & 11/12 講義'
+},
+{
+id: 'c_kk', char: 'ㄲ', cat: 'tense', roma: 'kk', zhuyin: 'ㄍ (四聲重音)',
+initial: '緊音「ㄍ」(像國語四聲「ㄍˋ」，先憋氣再清脆彈出，紙不動)',
+nonInitial: '同字首，緊實有力（如 토끼 兔子、아까 剛剛）',
+words: [{ kr: '토끼', mean: '兔子' }, { kr: '꿀', mean: '蜂蜜' }, { kr: '꺼요', mean: '關(燈)' }],
+tip: '講義口訣：唸「꿀」「꺼요」時接近「ㄍ」四聲的發音，喉嚨緊縮不吐氣。',
+stroke: '共 2 畫：連續寫兩個緊靠的「ㄱ」。',
+source: '10/19 筆記 & 11/12 講義'
+},
+{
+id: 'c_tt', char: 'ㄸ', cat: 'tense', roma: 'tt', zhuyin: 'ㄉ (四聲重音)',
+initial: '緊音「ㄉ」(像國語四聲「ㄉˋ」，舌尖用力頂住上顎彈出)',
+nonInitial: '同字首，短促有力（如 따라요 跟從）',
+words: [{ kr: '딸', mean: '女兒' }, { kr: '따라요', mean: '跟從' }, { kr: '딸기', mean: '草莓' }],
+tip: '講義口訣：唸「딸」(女兒)、「따라요」(跟從) 接近「ㄉ」四聲的發音！',
+stroke: '共 4 畫：連續寫兩個緊靠的「ㄷ」。',
+source: '11/12 講義'
+},
+{
+id: 'c_pp', char: 'ㅃ', cat: 'tense', roma: 'pp', zhuyin: 'ㄅ (四聲重音)',
+initial: '緊音「ㄅ」(像國語四聲「ㄅˋ」，雙唇緊閉蓄力爆發)',
+nonInitial: '同字首，紮實有力（如 오빠 哥哥、예뻐요 漂亮）',
+words: [{ kr: '오빠', mean: '哥哥' }, { kr: '뿔', mean: '角' }, { kr: '빵', mean: '麵包' }],
+tip: '講義口訣：唸「뿔」(角) 接近「ㄅ」四聲的發音，紙放在嘴巴前完全不會動。',
+stroke: '共 8 畫：連續寫兩個緊靠的「ㅂ」。',
+source: '10/19 筆記 & 11/12 講義'
+},
+{
+id: 'c_ss', char: 'ㅆ', cat: 'tense', roma: 'ss', zhuyin: 'ㄙ (緊音，遇ㅣ變ㄒ)',
+initial: '緊音「ㄙ」(牙齒咬緊、氣流極細緊繃擠出；遇ㅣ變緊音「ㄒ」)',
+nonInitial: '同字首（如 먹었어요 吃了）',
+words: [{ kr: '싸다', mean: '便宜' }, { kr: '쓰다', mean: '寫' }, { kr: '씨', mean: '先生/小姐' }],
+tip: '比單純的「ㅅ」更用力、更短促！例字：싸다 (便宜)。',
+stroke: '共 4 畫：連續寫兩個緊靠的「ㅅ」。',
+source: '10/19 筆記'
+},
+{
+id: 'c_jj', char: 'ㅉ', cat: 'tense', roma: 'jj', zhuyin: 'ㄗ / ㄐ(遇ㅣ，四聲重音)',
+initial: '緊音「ㄗ / ㄐ」(遇ㅣ/ㅑ等為緊音「ㄐ」)',
+nonInitial: '同字首（如 진짜 真的）',
+words: [{ kr: '진짜', mean: '真的' }, { kr: '짜다', mean: '鹹' }, { kr: '찌개', mean: '鍋(湯)' }],
+tip: '舌面緊貼上顎後爆發，接近國語四聲的「ㄐˋ / ㄗˋ」。例字：진짜 (真的)。',
+stroke: '共 4 畫：連續寫兩個緊靠的「ㅈ」。',
+source: '10/19 筆記'
+}
+];
+const CONTRAST_GROUPS = [
+{ title: 'ㄱ vs ㄲ (牡蠣 vs 蜂蜜)', items: [{ kr: '굴', mean: '牡蠣 (平音・紙不動)' }, { kr: '꿀', mean: '蜂蜜 (ㄍ四聲)' }] },
+{ title: 'ㅂ vs ㅍ (腳 vs 手臂)', items: [{ kr: '발', mean: '腳 (紙不動)' }, { kr: '팔', mean: '手臂 (氣流強・紙會動)' }] },
+{ title: 'ㅂ vs ㅃ vs ㅍ (火/角/膠水)', items: [{ kr: '불', mean: '火 (紙不動)' }, { kr: '뿔', mean: '角 (ㄅ四聲)' }, { kr: '풀', mean: '膠水 (紙會動)' }] },
+{ title: 'ㄱ vs ㅋ (球 vs 豆)', items: [{ kr: '공', mean: '球 (紙不動)' }, { kr: '콩', mean: '豆 (氣流強・紙會動)' }] },
+{ title: 'ㄱ vs ㅋ vs ㄲ (去/大/關)', items: [{ kr: '가요', mean: '去 (紙不動)' }, { kr: '커요', mean: '大 (紙會動)' }, { kr: '꺼요', mean: '關 (ㄍ四聲)' }] },
+{ title: 'ㄷ vs ㄸ vs ㅌ (月亮/女兒/面具)', items: [{ kr: '달', mean: '月亮 (紙不動)' }, { kr: '딸', mean: '女兒 (ㄉ四聲)' }, { kr: '탈', mean: '面具 (紙會動)' }] }
+];
+const BATCHIM_REP = [
+{
+id: 'b_g', rep: 'ㄱ', roma: '[k̚] (無聲除阻)', zhuyin: '喉嚨卡住快收尾 (近似台語入聲 -k)',
+members: '單：ㄱ, ㅋ, ㄲ ｜ 雙：ㄳ, ㄺ',
+words: [{ kr: '악', mean: '惡' }, { kr: '약', mean: '藥' }, { kr: '맥주', mean: '啤酒' }, { kr: '닭', mean: '雞 [닥]' }],
+tip: '講義重點：唸「맥주」(啤酒) 的終聲時，會感覺「喉嚨裡好像有東西卡住」一樣突然煞車，千萬不要吐氣！'
+},
+{
+id: 'b_n', rep: 'ㄴ', roma: '[n]', zhuyin: '鼻音 ㄣ (舌尖頂上排牙齒後)',
+members: '單：ㄴ ｜ 雙：ㄴㅈ, ㄴㅎ',
+words: [{ kr: '안', mean: '不/內' }, { kr: '안내', mean: '資訊' }, { kr: '반', mean: '半' }, { kr: '언니', mean: '姐姐' }],
+tip: '講義重點：唸「반」「안내」的時候，舌頭要放在「上排牙齒的後面」，尾聲「ㄴ」稍微拉長一點，氣從鼻子出。'
+},
+{
+id: 'b_d', rep: 'ㄷ', roma: '[t̚] (無聲除阻)', zhuyin: '舌尖頂住門牙後方急停 (近似台語 -t)',
+members: '單：ㄷ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ',
+words: [{ kr: '앋', mean: '測試音' }, { kr: '낟/낱/낫/낮/낳', mean: '皆唸 [낟]' }, { kr: '빛', mean: '光 [빋]' }, { kr: '옷', mean: '衣服 [옫]' }],
+tip: '最多字共用的代表音 (7個)！舌尖快速頂住上排門牙後方堵住氣流，不可發出「ㄙ」或吐氣音。'
+},
+{
+id: 'b_r', rep: 'ㄹ', roma: '[l]', zhuyin: '舌尖輕頂上顎 (近似英文 L 收尾)',
+members: '單：ㄹ ｜ 雙：ㄹㅂ, ㄹㅅ, ㄹㅌ, ㄹㅎ',
+words: [{ kr: '일', mean: '一/工作' }, { kr: '멀리', mean: '遠' }, { kr: '지하철', mean: '地鐵' }, { kr: '싫다', mean: '討厭 [실타]' }],
+tip: '講義重點：唸「멀리」的時候「ㄹ」尾聲要長一點，舌尖抵住上齒齦兩側微留空隙滑過，不同於初聲的彈舌。'
+},
+{
+id: 'b_m', rep: 'ㅁ', roma: '[m]', zhuyin: '閉唇鼻音 (嘴巴閉起來)',
+members: '單：ㅁ ｜ 雙：ㄹㅁ',
+words: [{ kr: '밤', mean: '晚上' }, { kr: '엄마', mean: '媽媽' }, { kr: '임 / 김', mean: '姓氏 林/金' }, { kr: '삶', mean: '人生 [삼]' }],
+tip: '講義重點：唸「밤」(晚上) 的時候，「嘴巴要完全閉起來」，聲音從鼻腔嗡嗡發出。'
+},
+{
+id: 'b_b', rep: 'ㅂ', roma: '[p̚] (無聲除阻)', zhuyin: '雙唇快速緊閉堵氣 (近似台語 -p)',
+members: '單：ㅂ, ㅍ ｜ 雙：ㅂㅅ, ㄹㅍ',
+words: [{ kr: '입', mean: '嘴巴' }, { kr: '밥', mean: '飯' }, { kr: '앞', mean: '前面 [압]' }, { kr: '값', mean: '價格 [갑]' }],
+tip: '雙唇瞬間緊閉，把氣堵在嘴唇裡面不噴出來！跟「ㅁ」的差別在於「ㅂ」沒有鼻音且短促截斷。'
+},
+{
+id: 'b_ng', rep: 'ㅇ', roma: '[ŋ]', zhuyin: '鼻音 ㄥ / [ng]',
+members: '單：ㅇ',
+words: [{ kr: '방', mean: '房間' }, { kr: '노래방', mean: 'KTV' }, { kr: '공', mean: '球' }, { kr: '강', mean: '江河' }],
+tip: '講義重點：作初聲不發音，作終聲要發「[ng]」鼻音！唸「방」時舌根頂住軟顎、用鼻音共鳴。'
+}
+];
+const DOUBLE_RIGHT = [
+{ pair: 'ㄹㄱ', sound: 'ㄱ [닥]', ex: '닭', mean: '雞 (講義例字：닭 [닥])', note: '例外：後面遇 ㄱ 開頭詞尾時有時唸 ㄹ' },
+{ pair: 'ㄹㅁ', sound: 'ㅁ [삼]', ex: '삶', mean: '人生 (講義例字：삶 [삼])', note: '還有 젊다 [점따] 年輕' },
+{ pair: 'ㄹㅍ', sound: 'ㅂ [읍따]', ex: '읊다', mean: '吟誦 [읍따]', note: 'ㅍ 作終聲歸類為代表音 ㅂ' }
+];
+const DOUBLE_LEFT = [
+{ pair: 'ㄱㅅ', sound: 'ㄱ', ex: '넋 [넉]', mean: '魂魄' },
+{ pair: 'ㄴㅈ', sound: 'ㄴ', ex: '앉다 [안따]', mean: '坐下' },
+{ pair: 'ㄴㅎ', sound: 'ㄴ', ex: '많다 [만타]', mean: '多 (ㅎ+ㄷ=ㅌ 氣音化)' },
+{ pair: 'ㄹㅂ', sound: 'ㄹ', ex: '넓다 [널따]', mean: '寬廣' },
+{ pair: 'ㄹㅅ', sound: 'ㄹ', ex: '외곬 [외골]', mean: '單一方向' },
+{ pair: 'ㄹㅌ', sound: 'ㄹ', ex: '핥다 [할따]', mean: '舔' },
+{ pair: 'ㄹㅎ', sound: 'ㄹ', ex: '싫다 [실타]', mean: '討厭 (ㅎ+ㄷ=ㅌ 氣音化)' },
+{ pair: 'ㅂㅅ', sound: 'ㅂ', ex: '값 [갑]', mean: '價格、價值' }
+];
+const BATCHIM_PAIRS = [
+{ a: '매주', am: '每週', b: '맥주', bm: '啤酒 (喉嚨卡住)', speak: '매주, 맥주' },
+{ a: '아내', am: '太太', b: '안내', bm: '資訊 (ㄴ尾聲長)', speak: '아내, 안내' },
+{ a: '머리', am: '頭', b: '멀리', bm: '遠 (ㄹ尾聲長)', speak: '머리, 멀리' },
+{ a: '반 / 밤 / 방', am: '半(頂齒)/晚(閉嘴)/房(鼻音)', b: '달라요 / 따라요', bm: '不一樣 / 跟從', speak: '반, 밤, 방' }
+];
+const CLASS_7_DATA = [
+{ rep: 'ㄱ', ipa: '[k̚] 喉部急停', single: ['ㄱ', 'ㅋ', 'ㄲ'], dbl: ['ㄳ', 'ㄺ'], ex: '악, 부엌[부억], 밖[박], 닭[닥]' },
+{ rep: 'ㄴ', ipa: '[n] 舌尖鼻音', single: ['ㄴ'], dbl: ['ㄴㅈ', 'ㄴㅎ'], ex: '안, 안내, 앉다[안따], 많다[만타]' },
+{ rep: 'ㄷ', ipa: '[t̚] 舌尖急停', single: ['ㄷ', 'ㅌ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅎ'], dbl: [], ex: '낟/낱/낫/낮/낳 (全部發 [낟])' },
+{ rep: 'ㄹ', ipa: '[l] 舌尖輕頂', single: ['ㄹ'], dbl: ['ㄹㅂ', 'ㄹㅅ', 'ㄹㅌ', 'ㄹㅎ'], ex: '일, 멀리, 넓다[널따], 싫다[실타]' },
+{ rep: 'ㅁ', ipa: '[m] 閉唇鼻音', single: ['ㅁ'], dbl: ['ㄹㅁ'], ex: '밤, 엄마, 김, 삶[삼]' },
+{ rep: 'ㅂ', ipa: '[p̚] 雙唇急停', single: ['ㅂ', 'ㅍ'], dbl: ['ㅂㅅ', 'ㄹㅍ'], ex: '밥, 입, 앞[압], 값[갑]' },
+{ rep: 'ㅇ', ipa: '[ŋ] 舌根鼻音', single: ['ㅇ'], dbl: [], ex: '방, 노래방, 공, 강' }
+];
+const VOCAB_LIST = [
+// 人物稱謂
+{ id: 'w_yeoja', kr: '여자', pron: 'yeo-ja', mean: '女生', cat: 'people', src: '10/19 & 11/05 筆記', note: '' },
+{ id: 'w_namja', kr: '남자', pron: 'nam-ja', mean: '男生', cat: 'people', src: '11/05 筆記', note: '' },
+{ id: 'w_eonni', kr: '언니', pron: 'eon-ni', mean: '姐姐（女生叫）', cat: 'people', src: '11/05 筆記', note: '女生稱呼姐姐' },
+{ id: 'w_oppa', kr: '오빠', pron: 'o-ppa', mean: '哥哥（女生叫）', cat: 'people', src: '10/19 & 11/05 筆記', note: '女生稱呼哥哥' },
+{ id: 'w_nuna', kr: '누나', pron: 'nu-na', mean: '姐姐（男生叫）', cat: 'people', src: '11/05 筆記', note: '男生稱呼姐姐' },
+{ id: 'w_hyeong', kr: '형', pron: 'hyeong', mean: '哥哥（男生叫）', cat: 'people', src: '11/05 筆記', note: '男生稱呼哥哥' },
+{ id: 'w_dongsaeng', kr: '동생', pron: 'dong-saeng', mean: '弟弟／妹妹（統稱）', cat: 'people', src: '11/05 筆記', note: '' },
+{ id: 'w_yeodongsaeng', kr: '여동생', pron: 'yeo-dong-saeng', mean: '妹妹', cat: 'people', src: '11/05 筆記', note: '' },
+{ id: 'w_namdongsaeng', kr: '남동생', pron: 'nam-dong-saeng', mean: '弟弟', cat: 'people', src: '11/05 筆記', note: '' },
+{ id: 'w_abeoji', kr: '아버지', pron: 'a-beo-ji', mean: '爸爸', cat: 'people', src: '10/19 筆記', note: '' },
+{ id: 'w_eomeoni', kr: '어머니', pron: 'eo-meo-ni', mean: '媽媽', cat: 'people', src: '10/19 & 11/05 筆記', note: '' },
+{ id: 'w_eomma', kr: '엄마', pron: 'eom-ma', mean: '媽媽（口語）', cat: 'people', src: '11/05 筆記', note: '' },
+{ id: 'w_anae', kr: '아내', pron: 'a-nae', mean: '太太', cat: 'people', src: '11/12 講義', note: '對比 안내 (資訊)' },
+{ id: 'w_ttal', kr: '딸', pron: 'ttal', mean: '女兒', cat: 'people', src: '11/12 講義', note: 'ㄸ 接近ㄉ四聲' },
+{ id: 'w_babo', kr: '바보', pron: 'ba-bo', mean: '傻瓜', cat: 'people', src: '11/05 筆記', note: '字首ㄆㄚ、字中ㄅㄛ' },
+{ id: 'w_uisa', kr: '의사', pron: 'ui-sa', mean: '醫生', cat: 'people', src: '11/05 筆記', note: '의 在字首唸 [의]' },
+{ id: 'w_im', kr: '임', pron: 'im', mean: '林（姓氏）', cat: 'people', src: '11/05 筆記', note: '終聲 ㅁ 閉唇' },
+{ id: 'w_gim', kr: '김', pron: 'gim', mean: '金（姓氏）', cat: 'people', src: '11/05 筆記', note: '終聲 ㅁ 閉唇' },
+// 生活場所
+{ id: 'w_jido', kr: '지도', pron: 'ji-do', mean: '地圖', cat: 'life', src: '11/05 & 11/12 講義', note: '' },
+{ id: 'w_uija', kr: '의자', pron: 'ui-ja', mean: '椅子', cat: 'life', src: '11/05 & 11/12 講義', note: '의 在字首唸 [의]' },
+{ id: 'w_gagu', kr: '가구', pron: 'ga-gu', mean: '傢俱', cat: 'life', src: '11/05 筆記', note: '字首ㄎ、字中ㄍ' },
+{ id: 'w_gudu', kr: '구두', pron: 'gu-du', mean: '皮鞋', cat: 'life', src: '11/12 講義', note: '' },
+{ id: 'w_baji', kr: '바지', pron: 'ba-ji', mean: '褲子', cat: 'life', src: '11/05 & 11/12 筆記', note: '' },
+{ id: 'w_jihacheol', kr: '지하철', pron: 'ji-ha-cheol', mean: '地鐵', cat: 'life', src: '11/05 & 11/12 講義', note: '' },
+{ id: 'w_doro', kr: '도로', pron: 'do-ro', mean: '道路', cat: 'life', src: '11/05 筆記', note: '' },
+{ id: 'w_bada', kr: '바다', pron: 'ba-da', mean: '大海', cat: 'life', src: '11/05 & 11/12 講義', note: '' },
+{ id: 'w_bang', kr: '방', pron: 'bang', mean: '房間', cat: 'life', src: '11/05 & 11/12 筆記', note: '終聲 ㅇ 發 [ng] 鼻音' },
+{ id: 'w_noraebang', kr: '노래방', pron: 'no-rae-bang', mean: 'KTV（練歌房）', cat: 'life', src: '11/12 筆記', note: '' },
+{ id: 'w_norae', kr: '노래', pron: 'no-rae', mean: '歌', cat: 'life', src: '11/12 講義', note: '' },
+{ id: 'w_tal', kr: '탈', pron: 'tal', mean: '面具', cat: 'life', src: '11/12 講義', note: 'ㅌ 強氣流紙會動' },
+{ id: 'w_annae', kr: '안내', pron: 'an-nae', mean: '資訊／導覽', cat: 'life', src: '11/12 講義', note: 'ㄴ 尾聲拉長一點' },
+{ id: 'w_gap', kr: '값', pron: 'gap [갑]', mean: '價格、價值', cat: 'life', src: '11/12 筆記', note: '雙收尾 ㅂㅅ 唸左邊 [갑]' },
+{ id: 'w_yeongeo', kr: '영어', pron: 'yeong-eo', mean: '英語', cat: 'life', src: '11/12 講義', note: '唸 어 時人中拉長' },
+{ id: 'w_yongeo', kr: '용어', pron: 'yong-eo', mean: '用語', cat: 'life', src: '11/12 講義', note: '區分 영어 vs 용어' },
+{ id: 'w_nara', kr: '나라', pron: 'na-ra', mean: '國家', cat: 'life', src: '11/05 筆記', note: '나라의 [나라에] 國家的' },
+{ id: 'w_haeoe', kr: '해외', pron: 'hae-oe', mean: '海外', cat: 'life', src: '10/19 筆記', note: '' },
+{ id: 'w_weding', kr: '웨딩', pron: 'we-ding', mean: '婚禮', cat: 'life', src: '10/19 筆記', note: '' },
+{ id: 'w_yeui', kr: '예의', pron: 'ye-ui [예이]', mean: '禮貌', cat: 'life', src: '11/05 筆記', note: '의 非字首唸 [이]' },
+{ id: 'w_uiji', kr: '의지', pron: 'ui-ji', mean: '意志', cat: 'life', src: '11/05 筆記', note: '' },
+{ id: 'w_uioe', kr: '의외', pron: 'ui-oe', mean: '意外', cat: 'life', src: '11/05 筆記', note: '' },
+{ id: 'w_minju', kr: '민주주의의 의의', pron: 'min-ju-ju-ui-ui ui-ui [민주주이에 의이]', mean: '民主主義的意義', cat: 'life', src: '11/05 筆記', note: '一次記住 의 三種讀音' },
+// 食物與動植物
+{ id: 'w_gogi', kr: '고기', pron: 'go-gi', mean: '肉', cat: 'food', src: '11/05 筆記', note: '' },
+{ id: 'w_bap', kr: '밥', pron: 'bap', mean: '飯', cat: 'food', src: '11/05 筆記', note: '終聲 ㅂ 雙唇緊閉' },
+{ id: 'w_uyu', kr: '우유', pron: 'u-yu', mean: '牛奶', cat: 'food', src: '10/19 筆記', note: '' },
+{ id: 'w_keopi', kr: '커피', pron: 'keo-pi', mean: '咖啡', cat: 'food', src: '11/12 講義', note: '' },
+{ id: 'w_maekju', kr: '맥주', pron: 'maek-ju', mean: '啤酒', cat: 'food', src: '11/12 講義', note: 'ㄱ 終聲喉嚨有卡住感' },
+{ id: 'w_sagwa', kr: '사과', pron: 'sa-gwa', mean: '蘋果／道歉', cat: 'food', src: '11/12 講義 & 筆記', note: '一詞雙義：蘋果、道歉' },
+{ id: 'w_podo', kr: '포도', pron: 'po-do', mean: '葡萄', cat: 'food', src: '10/19 筆記', note: '' },
+{ id: 'w_kong', kr: '콩', pron: 'kong', mean: '豆子', cat: 'food', src: '11/12 講義', note: 'ㅋ 強氣流紙會動' },
+{ id: 'w_kkul', kr: '꿀', pron: 'kkul', mean: '蜂蜜', cat: 'food', src: '11/12 講義', note: 'ㄲ 接近ㄍ四聲' },
+{ id: 'w_gul', kr: '굴', pron: 'gul', mean: '牡蠣', cat: 'food', src: '11/12 講義', note: '' },
+{ id: 'w_so', kr: '소', pron: 'so', mean: '牛', cat: 'food', src: '11/05 筆記', note: '' },
+{ id: 'w_dwaeji', kr: '돼지', pron: 'dwae-ji', mean: '豬', cat: 'food', src: '11/12 講義', note: '' },
+{ id: 'w_tokki', kr: '토끼', pron: 'to-kki', mean: '兔子', cat: 'food', src: '10/19 筆記', note: '' },
+{ id: 'w_dak', kr: '닭', pron: 'dak [닥]', mean: '雞', cat: 'food', src: '11/12 筆記', note: '雙收尾 ㄹㄱ 唸右邊 [닥]' },
+// 時間、身體、自然與其他
+{ id: 'w_eoje', kr: '어제', pron: 'eo-je', mean: '昨天', cat: 'time', src: '11/12 講義', note: '' },
+{ id: 'w_oneul', kr: '오늘', pron: 'o-neul', mean: '今天', cat: 'time', src: '11/12 筆記', note: '' },
+{ id: 'w_naeil', kr: '내일', pron: 'nae-il', mean: '明天', cat: 'time', src: '11/12 筆記', note: '' },
+{ id: 'w_bam', kr: '밤', pron: 'bam', mean: '晚上', cat: 'time', src: '11/05 & 11/12 講義', note: '終聲 ㅁ 嘴巴閉起來' },
+{ id: 'w_maeju', kr: '매주', pron: 'mae-ju', mean: '每週', cat: 'time', src: '11/12 講義', note: '對比 맥주 (啤酒)' },
+{ id: 'w_meori', kr: '머리', pron: 'meo-ri', mean: '頭', cat: 'time', src: '11/12 講義', note: '對比 멀리 (遠)' },
+{ id: 'w_ip', kr: '입', pron: 'ip', mean: '嘴巴', cat: 'time', src: '11/05 筆記', note: '終聲 ㅂ 雙唇緊閉' },
+{ id: 'w_bal', kr: '발', pron: 'bal', mean: '腳', cat: 'time', src: '11/12 講義', note: '平音 ㅂ 紙不動' },
+{ id: 'w_pal', kr: '팔', pron: 'pal', mean: '手臂', cat: 'time', src: '11/12 講義', note: '激音 ㅍ 紙會動' },
+{ id: 'w_ppul', kr: '뿔', pron: 'ppul', mean: '角', cat: 'time', src: '11/12 講義', note: 'ㅃ 接近ㄅ四聲' },
+{ id: 'w_bul', kr: '불', pron: 'bul', mean: '火', cat: 'time', src: '11/12 講義', note: '' },
+{ id: 'w_pul', kr: '풀', pron: 'pul', mean: '膠水', cat: 'time', src: '11/12 講義', note: 'ㅍ 強氣流紙會動' },
+{ id: 'w_dal', kr: '달', pron: 'dal', mean: '月亮', cat: 'time', src: '11/12 講義', note: '' },
+{ id: 'w_gong', kr: '공', pron: 'gong', mean: '球', cat: 'time', src: '11/12 講義', note: '' },
+{ id: 'w_il', kr: '일', pron: 'il', mean: '一／工作', cat: 'time', src: '11/05 筆記', note: '' },
+{ id: 'w_salm', kr: '삶', pron: 'salm [삼]', mean: '人生', cat: 'time', src: '11/12 筆記', note: '雙收尾 ㄹㅁ 唸右邊 [삼]' },
+{ id: 'w_wi', kr: '위', pron: 'wi', mean: '上面', cat: 'time', src: '10/19 筆記', note: '' },
+{ id: 'w_arae', kr: '아래', pron: 'a-rae', mean: '下面', cat: 'time', src: '10/19 筆記', note: '' },
+{ id: 'w_oe', kr: '외', pron: 'oe', mean: '外', cat: 'time', src: '10/19 筆記', note: '' },
+{ id: 'w_bi', kr: '비', pron: 'bi', mean: '雨', cat: 'time', src: '10/19 筆記', note: '' },
+// 動詞、形容詞與會話
+{ id: 'w_saranghae', kr: '사랑해', pron: 'sa-rang-hae', mean: '我愛你', cat: 'action', src: '10/19 & 11/05 筆記', note: '' },
+{ id: 'w_eodi', kr: '어디', pron: 'eo-di', mean: '哪裡', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_waeyo', kr: '왜요?', pron: 'wae-yo', mean: '為什麼？', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_meogeosseoyo', kr: '먹었어요?', pron: 'meo-geo-sseo-yo', mean: '吃了嗎？', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_deowoyo', kr: '더워요', pron: 'deo-wo-yo', mean: '好熱', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_wau', kr: '와우', pron: 'wa-u', mean: '哇嗚', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_gayo', kr: '가요', pron: 'ga-yo', mean: '去', cat: 'action', src: '11/12 講義', note: '' },
+{ id: 'w_keoyo', kr: '커요', pron: 'keo-yo', mean: '大', cat: 'action', src: '11/12 講義', note: 'ㅋ 氣流強紙會動' },
+{ id: 'w_kkeoyo', kr: '꺼요', pron: 'kkeo-yo', mean: '關（燈／電器）', cat: 'action', src: '11/12 講義', note: 'ㄲ 接近ㄍ四聲' },
+{ id: 'w_ssada', kr: '싸다', pron: 'ssa-da', mean: '便宜', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_jinjja', kr: '진짜', pron: 'jin-jja', mean: '真的', cat: 'action', src: '10/19 筆記', note: '' },
+{ id: 'w_manta', kr: '많다', pron: 'man-ta [만타]', mean: '多', cat: 'action', src: '11/12 筆記', note: 'ㄴㅎ 唸左邊 + ㅎ+ㄷ=ㅌ 氣音化' },
+{ id: 'w_silta', kr: '싫다', pron: 'sil-ta [실타]', mean: '討厭', cat: 'action', src: '11/12 筆記', note: 'ㄹㅎ 唸左邊 + ㅎ+ㄷ=ㅌ 氣音化' },
+{ id: 'w_meolli', kr: '멀리', pron: 'meol-li', mean: '遠', cat: 'action', src: '11/12 講義', note: 'ㄹ 尾聲拉長一點' },
+{ id: 'w_dallayo', kr: '달라요', pron: 'dal-la-yo', mean: '不一樣', cat: 'action', src: '11/12 講義', note: 'ㄷ 接近 t 音' },
+{ id: 'w_ttarayo', kr: '따라요', pron: 'tta-ra-yo', mean: '跟從', cat: 'action', src: '11/12 講義', note: 'ㄸ 接近ㄉ四聲' },
+{ id: 'w_ban', kr: '반', pron: 'ban', mean: '半', cat: 'action', src: '11/12 講義', note: '舌尖放上排牙齒後面' }
+];
+// ==================== STATE ====================
+let state = {
+activeTab: 'vowels',
+vowelFilter: 'all',
+consonantFilter: 'all',
+classFilter: 'all',
+vocabFilter: 'all',
+searchQuery: '',
+onlyBookmarks: false,
+bookmarks: new Set(),
+quizMode: 'mixed',
+quizIndex: 0,
+quizScore: 0,
+quizQuestions: [],
+quizAnswered: false,
+speechRate: 0.55
+};
+try {
+const saved = JSON.parse(localStorage.getItem('eva_kr_bookmarks') || '[]');
+if (Array.isArray(saved)) state.bookmarks = new Set(saved);
+} catch (e) {}
+function saveBookmarks() {
+try {
+localStorage.setItem('eva_kr_bookmarks', JSON.stringify([...state.bookmarks]));
+} catch (e) {}
+document.getElementById('bookmarkCount').textContent = state.bookmarks.size;
+}
+function toggleBookmark(id) {
+if (state.bookmarks.has(id)) state.bookmarks.delete(id);
+else state.bookmarks.add(id);
+saveBookmarks();
+renderAll();
+}
+// ==================== SPEECH ====================
+let cachedKrVoice = null;
+function getBestKoreanVoice() {
+if (!('speechSynthesis' in window)) return null;
+const voices = window.speechSynthesis.getVoices() || [];
+const krVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ko'));
+if (!krVoices.length) return null;
+return krVoices.find(v => /yuna|sora|google|natural|premium/i.test(v.name)) || krVoices[0];
+}
+if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+window.speechSynthesis.onvoiceschanged = () => { cachedKrVoice = getBestKoreanVoice(); };
+}
+let speakTimer = null;
+function speakKr(text) {
+if (!('speechSynthesis' in window)) return;
+try {
+if (speakTimer) { clearTimeout(speakTimer); speakTimer = null; }
+window.speechSynthesis.cancel();
+if (!cachedKrVoice) cachedKrVoice = getBestKoreanVoice();
+const parts = String(text).split(/[,，、]/).map(t => t.trim()).filter(Boolean);
+const speakPart = (idx) => {
+if (idx >= parts.length) return;
+const utt = new SpeechSynthesisUtterance(parts[idx]);
+utt.lang = 'ko-KR';
+if (cachedKrVoice) utt.voice = cachedKrVoice;
+utt.rate = state.speechRate;
+utt.pitch = 1.0;
+utt.volume = 1.0;
+utt.onend = () => {
+if (idx + 1 < parts.length) {
+speakTimer = setTimeout(() => speakPart(idx + 1), 420);
+}
+};
+window.speechSynthesis.speak(utt);
+};
+speakPart(0);
+} catch (e) {}
+}
+const SPEED_STEPS = [
+{ rate: 0.55, label: '語速：慢 0.55x' },
+{ rate: 0.75, label: '語速：中 0.75x' },
+{ rate: 0.95, label: '語速：常 0.95x' }
+];
+let speedIdx = 0;
+document.getElementById('speedToggleBtn').addEventListener('click', () => {
+speedIdx = (speedIdx + 1) % SPEED_STEPS.length;
+state.speechRate = SPEED_STEPS[speedIdx].rate;
+document.getElementById('speedLabel').textContent = SPEED_STEPS[speedIdx].label;
+});
+// ==================== SEARCH MATCH ====================
+function matchQuery(obj, fields) {
+if (state.onlyBookmarks && !state.bookmarks.has(obj.id)) return false;
+const q = state.searchQuery.trim().toLowerCase();
+if (!q) return true;
+return fields.some(f => (f || '').toLowerCase().includes(q));
+}
+const starSvg = (filled) => filled
+? `<svg class="w-4 h-4 text-[#C66B4F]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>`
+: `<svg class="w-4 h-4 text-[#C8C0B4] hover:text-[#C66B4F]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>`;
+const speakerSvg = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07"/></svg>`;
+// ==================== RENDER FUNCTIONS ====================
+function renderVowels() {
+const grid = document.getElementById('vowelsGrid');
+const list = VOWELS.filter(v => {
+if (state.vowelFilter !== 'all' && v.type !== state.vowelFilter) return false;
+const wordStr = v.words.map(w => `${w.kr} ${w.mean}`).join(' ');
+return matchQuery(v, [v.char, v.roma, v.zhuyin, v.tip, wordStr]);
+});
+if (!list.length) {
+grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#9C948B] text-sm">找不到符合條件的母音項目</div>`;
+return;
+}
+grid.innerHTML = list.map(v => {
+const isStar = state.bookmarks.has(v.id);
+return `
+<div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-4">
+<div>
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3.5">
+<div class="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#E6DFD5] text-[#2B2623] flex items-center justify-center text-3xl font-bold kr">${v.char}</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] px-2 py-0.5 rounded-full ${v.type === 'basic' ? 'bg-[#EFEAE2] text-[#575049]' : 'bg-[#EEF2F6] text-[#4B5B76]'} font-medium">${v.type === 'basic' ? '基本母音' : '複合母音'}</span>
+<span class="text-[11px] text-[#A8A096]">${v.source}</span>
+</div>
+<div class="mt-1.5 text-sm font-semibold text-[#2B2623]">
+<span class="text-[#4B5B76]">${v.roma}</span>
+<span class="mx-1.5 text-[#D6CEC2]">|</span>
+<span class="text-[#C66B4F]">${v.zhuyin}</span>
+</div>
+</div>
+</div>
+<button type="button" onclick="toggleBookmark('${v.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]" title="加入待複習">${starSvg(isStar)}</button>
+</div>
+<div class="mt-3.5 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
+<span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${v.tip}
+</div>
+<div class="mt-2.5 text-xs text-[#78716C] leading-relaxed">
+<span class="font-semibold text-[#4A433D]">筆順：</span>${v.stroke}
+</div>
+</div>
+<div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap items-center justify-between gap-2">
+<div class="flex flex-wrap gap-1.5">
+${v.words.map(w => `<button type="button" onclick="speakKr('${w.kr}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#EAE3D8] text-xs text-[#4A433D] transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<button type="button" onclick="speakKr('${v.char}')" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#E6DFD5] text-[#4A433D] flex items-center justify-center" title="朗讀母音">${speakerSvg}</button>
+<button type="button" onclick="openModal('vowel', '${v.id}')" class="px-3 py-1.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] text-xs font-medium transition">筆順練習</button>
+</div>
+</div>
+</div>
+`;
+}).join('');
+}
+function renderConsonants() {
+const grid = document.getElementById('consonantsGrid');
+const list = CONSONANTS.filter(c => {
+if (state.consonantFilter !== 'all' && c.cat !== state.consonantFilter) return false;
+const wordStr = c.words.map(w => `${w.kr} ${w.mean}`).join(' ');
+return matchQuery(c, [c.char, c.roma, c.zhuyin, c.initial, c.nonInitial, c.tip, wordStr]);
+});
+if (!list.length) {
+grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#9C948B] text-sm">找不到符合條件的子音項目</div>`;
+} else {
+const catMap = {
+plain: ['基本平音', 'bg-[#EFEAE2] text-[#575049]'],
+aspirated: ['激音/氣音', 'bg-[#FCF5F2] text-[#B5593D]'],
+tense: ['硬音/雙子音', 'bg-[#EDF3F0] text-[#4A6B5D]']
+};
+grid.innerHTML = list.map(c => {
+const isStar = state.bookmarks.has(c.id);
+const [catLabel, catCls] = catMap[c.cat];
+return `
+<div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-4">
+<div>
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3.5">
+<div class="w-14 h-14 rounded-2xl bg-[#FCF5F2] border border-[#F2DFD8] text-[#B5593D] flex items-center justify-center text-3xl font-bold kr">${c.char}</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] px-2 py-0.5 rounded-full ${catCls} font-medium">${catLabel}</span>
+<span class="text-[11px] text-[#A8A096]">${c.source}</span>
+</div>
+<div class="mt-1.5 text-sm font-semibold text-[#2B2623]">
+<span class="text-[#4B5B76]">${c.roma}</span>
+<span class="mx-1.5 text-[#D6CEC2]">|</span>
+<span class="text-[#C66B4F]">${c.zhuyin}</span>
+</div>
+</div>
+</div>
+<button type="button" onclick="toggleBookmark('${c.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]">${starSvg(isStar)}</button>
+</div>
+<div class="mt-3.5 space-y-1.5 text-xs">
+<div class="p-2.5 rounded-xl bg-[#F3F6FA] border border-[#E0E6F0] text-[#3B475C]">
+<span class="font-semibold">① 第一個字(字首)：</span>${c.initial}
+</div>
+<div class="p-2.5 rounded-xl bg-[#F4F8F6] border border-[#DCE8E1] text-[#355245]">
+<span class="font-semibold">② 非第一個字(字中)：</span>${c.nonInitial}
+</div>
+</div>
+<div class="mt-2.5 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
+<span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${c.tip}
+</div>
+<div class="mt-2 text-xs text-[#78716C] leading-relaxed">
+<span class="font-semibold text-[#4A433D]">筆順：</span>${c.stroke}
+</div>
+</div>
+<div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap items-center justify-between gap-2">
+<div class="flex flex-wrap gap-1.5">
+${c.words.map(w => `<button type="button" onclick="speakKr('${w.kr}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#EAE3D8] text-xs text-[#4A433D] transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<button type="button" onclick="speakKr('${c.words[0].kr}')" class="w-8 h-8 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#E6DFD5] text-[#4A433D] flex items-center justify-center" title="朗讀範例">${speakerSvg}</button>
+<button type="button" onclick="openModal('consonant', '${c.id}')" class="px-3 py-1.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] text-xs font-medium transition">筆順練習</button>
+</div>
+</div>
+</div>
+`;
+}).join('');
+}
+document.getElementById('contrastGrid').innerHTML = CONTRAST_GROUPS.map(g => `
+<div class="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#EAE3D8]">
+<div class="text-xs font-semibold text-[#2B2623] mb-2.5">${g.title}</div>
+<div class="flex flex-wrap gap-1.5">
+${g.items.map(it => `<button type="button" onclick="speakKr('${it.kr}')" class="px-2.5 py-1.5 rounded-full bg-white border border-[#E2DAD0] hover:border-[#C66B4F] text-xs text-left transition"><span class="kr font-bold text-[#C66B4F]">${it.kr}</span> <span class="text-[#575049]">${it.mean}</span></button>`).join('')}
+</div>
+</div>
+`).join('');
+}
+function renderBatchim() {
+const grid = document.getElementById('batchimGrid');
+const list = BATCHIM_REP.filter(b => {
+const wordStr = b.words.map(w => `${w.kr} ${w.mean}`).join(' ');
+return matchQuery(b, [b.rep, b.roma, b.zhuyin, b.members, b.tip, wordStr]);
+});
+grid.innerHTML = list.length ? list.map(b => {
+const isStar = state.bookmarks.has(b.id);
+return `
+<div class="card-paper rounded-2xl p-5 flex flex-col justify-between gap-3.5">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-2xl bg-[#EDF3F0] border border-[#D4E2DA] text-[#4A6B5D] flex items-center justify-center text-2xl font-bold kr">${b.rep}</div>
+<div>
+<div class="text-[11px] font-semibold text-[#4A6B5D]">代表音 [${b.rep}]</div>
+<div class="text-sm font-bold text-[#2B2623]">${b.roma}</div>
+</div>
+</div>
+<button type="button" onclick="toggleBookmark('${b.id}')" class="p-1.5 rounded-full hover:bg-[#FAF7F2]">${starSvg(isStar)}</button>
+</div>
+<div class="mt-3 text-xs font-semibold text-[#C66B4F]">口型/注音：${b.zhuyin}</div>
+<div class="mt-1 text-xs text-[#78716C]">包含寫法：${b.members}</div>
+<div class="mt-3 p-3 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#4A433D] leading-relaxed">
+<span class="font-semibold text-[#2B2623]">記憶訣竅：</span>${b.tip}
+</div>
+</div>
+<div class="pt-3 border-t border-[#F0EAE1] flex flex-wrap gap-1.5">
+${b.words.map(w => `<button type="button" onclick="speakKr('${w.kr.split('/')[0]}')" class="px-2.5 py-1 rounded-full bg-[#FAF7F2] hover:bg-[#EDF3F0] border border-[#EAE3D8] text-xs transition"><span class="kr font-semibold text-[#2B2623]">${w.kr}</span> ${w.mean}</button>`).join('')}
+</div>
+</div>
+`;
+}).join('') : `<div class="col-span-full text-center py-10 text-[#9C948B] text-sm">找不到符合條件的終聲項目</div>`;
+document.getElementById('doubleRightList').innerHTML = DOUBLE_RIGHT.map(d => `
+<div class="p-3.5 rounded-xl bg-white border border-[#D4E2DA] flex items-center justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="kr text-xl font-bold text-[#4A6B5D]">${d.pair}</span>
+<span class="text-[11px] px-2 py-0.5 rounded-full bg-[#EDF3F0] text-[#355245] font-medium">唸右邊 → ${d.sound}</span>
+</div>
+<div class="text-xs text-[#4A433D] mt-1"><span class="kr font-bold text-[#2B2623]">${d.ex}</span> ${d.mean}</div>
+<div class="text-[11px] text-[#9C948B] mt-0.5">${d.note}</div>
+</div>
+<button type="button" onclick="speakKr('${d.ex}')" class="w-8 h-8 rounded-full bg-[#F4F8F6] hover:bg-[#E1EDE7] text-[#4A6B5D] flex items-center justify-center shrink-0">${speakerSvg}</button>
+</div>
+`).join('');
+document.getElementById('doubleLeftList').innerHTML = DOUBLE_LEFT.map(d => `
+<div class="p-3 rounded-xl bg-white border border-[#E6DFD5] flex items-center justify-between gap-2">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="kr text-lg font-bold text-[#2B2623]">${d.pair}</span>
+<span class="text-[11px] px-2 py-0.5 rounded-full bg-[#EFEAE2] text-[#575049] font-medium">唸 ${d.sound}</span>
+</div>
+<div class="text-xs text-[#575049] mt-1"><span class="kr font-semibold text-[#2B2623]">${d.ex}</span> ${d.mean}</div>
+</div>
+<button type="button" onclick="speakKr('${d.ex.split(' ')[0]}')" class="w-7 h-7 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] text-[#575049] flex items-center justify-center shrink-0">${speakerSvg}</button>
+</div>
+`).join('');
+document.getElementById('batchimPairsGrid').innerHTML = BATCHIM_PAIRS.map(p => `
+<button type="button" onclick="speakKr('${p.speak}')" class="p-3.5 rounded-xl bg-[#FAF7F2] hover:bg-[#EFEAE2]/70 border border-[#EAE3D8] text-left transition">
+<div class="flex items-center justify-between">
+<span class="kr font-bold text-[#2B2623] text-sm">${p.a} vs ${p.b}</span>
+<span class="text-[#78716C]">${speakerSvg}</span>
+</div>
+<div class="text-xs text-[#78716C] mt-1">${p.am} ｜ ${p.bm}</div>
+</button>
+`).join('');
+}
+function renderClassification() {
+const pills = document.getElementById('classFilterPills');
+pills.innerHTML = [
+`<button type="button" onclick="setClassFilter('all')" class="px-3.5 py-1.5 rounded-full text-xs font-medium transition ${state.classFilter === 'all' ? 'bg-[#2B2623] text-[#FAF7F2]' : 'bg-white border border-[#E2DAD0] text-[#575049] hover:bg-[#EFEAE2]'}">全部 7 種</button>`,
+...CLASS_7_DATA.map(c => `<button type="button" onclick="setClassFilter('${c.rep}')" class="kr px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${state.classFilter === c.rep ? 'bg-[#C66B4F] text-white' : 'bg-white border border-[#E2DAD0] text-[#575049] hover:bg-[#FAF7F2]'}">代表音 [${c.rep}]</button>`)
+].join('');
+const filtered = CLASS_7_DATA.filter(c => state.classFilter === 'all' || c.rep === state.classFilter);
+document.getElementById('classificationCards').innerHTML = filtered.map(c => `
+<div class="card-paper rounded-2xl p-5 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-11 h-11 rounded-2xl bg-[#2B2623] text-[#FAF7F2] flex items-center justify-center text-xl font-bold kr">${c.rep}</span>
+<div>
+<div class="font-bold text-[#2B2623]">代表音 [${c.rep}]</div>
+<div class="text-xs text-[#78716C]">${c.ipa}</div>
+</div>
+</div>
+<span class="text-xs font-medium text-[#78716C]">共 ${c.single.length + c.dbl.length} 種寫法</span>
+</div>
+<div class="flex flex-wrap gap-1.5 items-center text-xs">
+<span class="text-[#78716C]">單收尾：</span>
+${c.single.map(s => `<span class="kr px-2.5 py-0.5 rounded-full bg-[#FAF7F2] border border-[#E6DFD5] font-semibold text-[#2B2623]">${s}</span>`).join('')}
+</div>
+<div class="flex flex-wrap gap-1.5 items-center text-xs">
+<span class="text-[#78716C]">雙收尾：</span>
+${c.dbl.length ? c.dbl.map(d => `<span class="kr px-2.5 py-0.5 rounded-full bg-[#FDF6EC] border border-[#EED9BD] font-semibold text-[#8C5A2B]">${d}</span>`).join('') : '<span class="text-[#B8AFA6]">無</span>'}
+</div>
+<div class="text-xs text-[#575049] pt-2 border-t border-[#F0EAE1]">
+<span class="font-semibold text-[#2B2623]">例字：</span><span class="kr">${c.ex}</span>
+</div>
+</div>
+`).join('');
+document.getElementById('classTableBody').innerHTML = CLASS_7_DATA.map(c => `
+<tr class="hover:bg-[#FAF7F2]">
+<td class="px-4 py-3 font-bold text-lg kr text-[#C66B4F]">${c.rep}</td>
+<td class="px-4 py-3 text-[#575049]">${c.ipa}</td>
+<td class="px-4 py-3 kr font-semibold text-[#2B2623]">${c.single.join('、')}</td>
+<td class="px-4 py-3 kr font-semibold text-[#8C5A2B]">${c.dbl.length ? c.dbl.join('、') : '—'}</td>
+<td class="px-4 py-3 kr text-[#575049]">${c.ex}</td>
+</tr>
+`).join('');
+}
+function renderVocab() {
+const grid = document.getElementById('vocabGrid');
+const catNames = {
+people: ['人物稱謂', 'bg-[#FCF5F2] text-[#B5593D]'],
+life: ['生活場所', 'bg-[#EEF2F6] text-[#4B5B76]'],
+food: ['食物動植', 'bg-[#EDF3F0] text-[#4A6B5D]'],
+time: ['時間身體自然', 'bg-[#FDF6EC] text-[#8C5A2B]'],
+action: ['動詞與會話', 'bg-[#EFEAE2] text-[#575049]']
+};
+document.getElementById('vocabTabCount').textContent = VOCAB_LIST.length;
+const list = VOCAB_LIST.filter(w => {
+if (state.vocabFilter !== 'all' && w.cat !== state.vocabFilter) return false;
+return matchQuery(w, [w.kr, w.pron, w.mean, w.note, w.src]);
+});
+if (!list.length) {
+grid.innerHTML = `<div class="col-span-full text-center py-12 text-[#9C948B] text-sm">找不到符合條件的單字</div>`;
+return;
+}
+grid.innerHTML = list.map(w => {
+const isStar = state.bookmarks.has(w.id);
+const [cLabel, cCls] = catNames[w.cat];
+return `
+<div class="card-paper rounded-2xl p-4.5 p-5 flex flex-col justify-between gap-3">
+<div>
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="text-[11px] px-2 py-0.5 rounded-full ${cCls} font-medium">${cLabel}</span>
+<span class="text-[11px] text-[#A8A096]">${w.src}</span>
+</div>
+<button type="button" onclick="toggleBookmark('${w.id}')" class="p-1 rounded-full hover:bg-[#FAF7F2]" title="加入待複習">${starSvg(isStar)}</button>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between gap-2">
+<span class="kr text-2xl font-bold text-[#2B2623]">${w.kr}</span>
+<span class="text-xs font-medium text-[#4B5B76]">${w.pron}</span>
+</div>
+<div class="mt-1.5 text-sm font-semibold text-[#C66B4F]">${w.mean}</div>
+${w.note ? `<div class="mt-2.5 px-3 py-2 rounded-xl bg-[#FAF7F2] border border-[#F0EAE1] text-xs text-[#575049]">${w.note}</div>` : ''}
+</div>
+<div class="pt-2.5 border-t border-[#F0EAE1] flex justify-end">
+<button type="button" onclick="speakKr('${w.kr}')" class="px-3.5 py-1.5 rounded-full bg-[#FAF7F2] hover:bg-[#EFEAE2] border border-[#E6DFD5] text-xs font-medium text-[#2B2623] flex items-center gap-1.5 transition">
+${speakerSvg}
+<span>發音</span>
+</button>
+</div>
+</div>
+`;
+}).join('');
+}
+function setClassFilter(val) {
+state.classFilter = val;
+renderClassification();
+}
+// ==================== QUIZ ====================
+const QUIZ_BANK = [
+{ mode: 'batchim7', q: '單字「빛 (光)」的終聲 ㅊ，歸類在七種終聲的哪一個代表音？', opts: ['ㄱ', 'ㄷ', 'ㅂ', 'ㅇ'], ans: 1, exp: 'ㄷ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ 這 7 個子音作終聲時，全部歸類發 [ㄷ] 的音。' },
+{ mode: 'batchim7', q: '單字「부엌 (廚房)」的終聲 ㅋ，歸類在七種終聲的哪一個代表音？', opts: ['ㄱ', 'ㄷ', 'ㄹ', 'ㅁ'], ans: 0, exp: 'ㄱ, ㅋ, ㄲ 作終聲時皆歸類為代表音 [ㄱ]，喉嚨緊縮快快收音。' },
+{ mode: 'batchim7', q: '下列哪一組三個雙子音「絕對不會」出現在終聲位置？', opts: ['ㄲ, ㅆ, ㅉ', 'ㄸ, ㅃ, ㅉ', 'ㄱ, ㄷ, ㅂ', 'ㅋ, ㅌ, ㅍ'], ans: 1, exp: '27 種終聲寫法中，只有 ㄸ, ㅃ, ㅉ 這三個雙子音永遠不會當終聲。' },
+{ mode: 'double', q: '雙收尾音「닭 (雞)」應該唸左邊還是右邊？正確發音為何？', opts: ['唸左邊 [달]', '唸右邊 [닥]', '兩個都唸', '不發音'], ans: 1, exp: '口訣：先記 3 個唸右邊的雙收尾音「ㄺ, ㄻ, ㄿ」，所以 닭 唸右邊 [닥]。' },
+{ mode: 'double', q: '雙收尾音「삶 (人生)」的正確發音為何？', opts: ['[살]', '[삼]', '[삽]', '[삭]'], ans: 1, exp: 'ㄻ 屬於唸右邊的三個雙收尾音之一，故 삶 發音為 [삼]。' },
+{ mode: 'double', q: '講義例字「많다 (多)」的雙收尾音 ㄴㅎ，加上氣音化後的正確發音為何？', opts: ['[만다]', '[마타]', '[만타]', '[말타]'], ans: 2, exp: 'ㄴㅎ 唸左邊 ㄴ，而右邊的 ㅎ 遇到後面的 ㄷ 會產生氣音化 (ㅎ+ㄷ=ㅌ)，唸 [만타]。' },
+{ mode: 'consonant_pos', q: '單字「바보 (傻瓜)」的第一個 ㅂ 和第二個 ㅂ 分別接近什麼注音？', opts: ['都是 ㄅ', '都是 ㄆ', '第一個 ㄆ，第二個 ㄅ', '第一個 ㄅ，第二個 ㄆ'], ans: 2, exp: '基本子音 ㄱ, ㄷ, ㅂ, ㅈ 在字首偏送氣 (ㄎ/ㄊ/ㄆ/ㄘ)，在非字首母音間會濁化 (ㄍ/ㄉ/ㄅ/ㄗ)，所以 바보 唸作「ㄆㄚ ㄅㄛ」。' },
+{ mode: 'consonant_pos', q: '單字「민주주의의 의의」正確讀音為何？', opts: ['[민주주의의 의의]', '[민주주이에 의이]', '[민주주에에 에이]', '[민주주의에 이의]'], ans: 1, exp: '11/05 筆記經典句：非字首的 의 唸 [이]，當助詞「的」時唸 [에]，在第一個字時唸 [의]，合起來是 [민주주이에 의이]。' },
+{ mode: 'batchim7', q: '講義對比「매주 (每週)」與「맥주 (啤酒)」，唸 맥주 終聲時有什麼訣竅？', opts: ['嘴巴完全閉起來', '舌尖頂住上排牙齒後面', '喉嚨裡好像有東西卡住', '用鼻音拉長'], ans: 2, exp: '11/12 講義筆記：唸「맥주」的 ㄱ 終聲時，要感覺喉嚨裡好像有東西卡住一樣急停。' },
+{ mode: 'consonant_pos', q: '拿一張紙放嘴巴前唸「발 (腳)」與「팔 (手臂)」，哪個會讓紙明顯動？', opts: ['발 (腳)', '팔 (手臂)', '兩個都會動', '兩個都不會動'], ans: 1, exp: '11/12 講義：ㅍ 是激音(氣音)，氣流較強，唸 팔 的時候紙會跟著動；ㅂ 則是平音，紙不動。' }
+];
+function startQuiz(mode) {
+state.quizMode = mode;
+const pool = mode === 'mixed' ? QUIZ_BANK : QUIZ_BANK.filter(q => q.mode === mode);
+state.quizQuestions = [...pool].sort(() => Math.random() - 0.5);
+state.quizIndex = 0;
+state.quizScore = 0;
+state.quizAnswered = false;
+renderQuiz();
+}
+function renderQuiz() {
+const body = document.getElementById('quizBody');
+const total = state.quizQuestions.length;
+document.getElementById('quizScore').textContent = `得分：${state.quizScore}`;
+if (state.quizIndex >= total) {
+document.getElementById('quizProgress').textContent = `測驗完成`;
+body.innerHTML = `
+<div class="text-center py-6 space-y-4">
+<div class="text-2xl font-bold text-[#2B2623] serif-title">你答對了 ${state.quizScore} / ${total} 題</div>
+<p class="text-sm text-[#78716C]">可以切換其他測驗主題，或回到單元卡片複習不熟的項目。</p>
+<button type="button" onclick="startQuiz('${state.quizMode}')" class="px-5 py-2.5 rounded-full bg-[#2B2623] hover:bg-[#433C37] text-[#FAF7F2] font-medium text-sm transition">再測驗一次</button>
+</div>
+`;
+return;
+}
+const item = state.quizQuestions[state.quizIndex];
+document.getElementById('quizProgress').textContent = `第 ${state.quizIndex + 1} 題 / 共 ${total} 題`;
+body.innerHTML = `
+<div class="text-base font-bold text-[#2B2623] leading-relaxed">${item.q}</div>
+<div class="grid grid-cols-1 gap-2.5">
+${item.opts.map((opt, idx) => `
+<button type="button" data-qopt="${idx}" onclick="answerQuiz(${idx})" class="qopt-btn w-full text-left px-4 py-3 rounded-xl border border-[#E6DFD5] bg-[#FAF7F2]/60 hover:border-[#C66B4F] hover:bg-[#FAF7F2] text-sm font-medium transition kr">${opt}</button>
+`).join('')}
+</div>
+<div id="quizFeedback" class="hidden p-4 rounded-xl text-sm"></div>
+<div class="flex justify-end">
+<button id="quizNextBtn" type="button" onclick="nextQuiz()" class="hidden px-5 py-2 rounded-full bg-[#2B2623] text-[#FAF7F2] text-xs font-medium hover:bg-[#433C37] transition">下一題 →</button>
+</div>
+`;
+}
+function answerQuiz(idx) {
+if (state.quizAnswered) return;
+state.quizAnswered = true;
+const item = state.quizQuestions[state.quizIndex];
+const btns = document.querySelectorAll('.qopt-btn');
+btns.forEach((b, i) => {
+b.disabled = true;
+if (i === item.ans) b.className = 'qopt-btn w-full text-left px-4 py-3 rounded-xl border-2 border-[#4A6B5D] bg-[#EDF3F0] text-[#2F473D] text-sm font-bold kr';
+else if (i === idx) b.className = 'qopt-btn w-full text-left px-4 py-3 rounded-xl border-2 border-[#C66B4F] bg-[#FCF5F2] text-[#9A4E36] text-sm font-medium kr';
+});
+if (idx === item.ans) state.quizScore++;
+document.getElementById('quizScore').textContent = `得分：${state.quizScore}`;
+const fb = document.getElementById('quizFeedback');
+fb.classList.remove('hidden');
+fb.className = `p-4 rounded-xl text-xs leading-relaxed ${idx === item.ans ? 'bg-[#EDF3F0] text-[#2F473D] border border-[#D4E2DA]' : 'bg-[#FCF5F2] text-[#9A4E36] border border-[#F2DFD8]'}`;
+fb.innerHTML = `<div class="font-bold text-sm mb-1">${idx === item.ans ? '答對了' : '再記一下喔'}</div><div>${item.exp}</div>`;
+document.getElementById('quizNextBtn').classList.remove('hidden');
+}
+function nextQuiz() {
+state.quizIndex++;
+state.quizAnswered = false;
+renderQuiz();
+}
+// ==================== MODAL & CANVAS ====================
+const canvas = document.getElementById('drawCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+function getPos(e) {
+const rect = canvas.getBoundingClientRect();
+const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+return { x: (clientX - rect.left) * (canvas.width / rect.width), y: (clientY - rect.top) * (canvas.height / rect.height) };
+}
+canvas.addEventListener('pointerdown', e => {
+drawing = true;
+const p = getPos(e);
+ctx.beginPath();
+ctx.moveTo(p.x, p.y);
+});
+canvas.addEventListener('pointermove', e => {
+if (!drawing) return;
+const p = getPos(e);
+ctx.lineWidth = 10;
+ctx.lineCap = 'round';
+ctx.lineJoin = 'round';
+ctx.strokeStyle = '#C66B4F';
+ctx.lineTo(p.x, p.y);
+ctx.stroke();
+});
+window.addEventListener('pointerup', () => { drawing = false; });
+function clearCanvas() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+document.getElementById('clearCanvasBtn').addEventListener('click', clearCanvas);
+function openModal(kind, id) {
+const item = kind === 'vowel' ? VOWELS.find(v => v.id === id) : CONSONANTS.find(c => c.id === id);
+if (!item) return;
+document.getElementById('modalChar').textContent = item.char;
+document.getElementById('modalTitle').textContent = `${kind === 'vowel' ? '母音' : '子音'} ${item.char}`;
+document.getElementById('modalSub').textContent = `英文：${item.roma} ｜ 注音：${item.zhuyin}`;
+document.getElementById('modalStrokeDesc').textContent = item.stroke;
+document.getElementById('canvasGuideChar').textContent = item.char;
+document.getElementById('modalExtraTip').textContent = `記憶訣竅：${item.tip}`;
+document.getElementById('modalSpeakBtn').onclick = () => speakKr(kind === 'vowel' ? item.char : item.words[0].kr);
+clearCanvas();
+document.getElementById('strokeModal').classList.remove('hidden');
+}
+document.getElementById('closeModalBtn').addEventListener('click', () => {
+document.getElementById('strokeModal').classList.add('hidden');
+});
+document.getElementById('strokeModal').addEventListener('click', e => {
+if (e.target.id === 'strokeModal') document.getElementById('strokeModal').classList.add('hidden');
+});
+// ==================== NAVIGATION & EVENTS ====================
+function switchTab(tab) {
+state.activeTab = tab;
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+['vowels', 'consonants', 'batchim', 'classification', 'vocab', 'quiz'].forEach(sec => {
+document.getElementById(`sec-${sec}`).classList.toggle('hidden', sec !== tab);
+});
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+document.querySelectorAll('[data-vfilter]').forEach(btn => {
+btn.addEventListener('click', () => {
+state.vowelFilter = btn.dataset.vfilter;
+document.querySelectorAll('[data-vfilter]').forEach(b => b.classList.toggle('active', b === btn));
+renderVowels();
+});
+});
+document.querySelectorAll('[data-cfilter]').forEach(btn => {
+btn.addEventListener('click', () => {
+state.consonantFilter = btn.dataset.cfilter;
+document.querySelectorAll('[data-cfilter]').forEach(b => b.classList.toggle('active', b === btn));
+renderConsonants();
+});
+});
+document.querySelectorAll('[data-vocabfilter]').forEach(btn => {
+btn.addEventListener('click', () => {
+state.vocabFilter = btn.dataset.vocabfilter;
+document.querySelectorAll('[data-vocabfilter]').forEach(b => b.classList.toggle('active', b === btn));
+renderVocab();
+});
+});
+document.querySelectorAll('.qmode-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+document.querySelectorAll('.qmode-btn').forEach(b => {
+b.classList.remove('active', 'bg-[#2B2623]', 'text-[#FAF7F2]');
+b.classList.add('text-[#6B635B]');
+});
+btn.classList.add('active', 'bg-[#2B2623]', 'text-[#FAF7F2]');
+btn.classList.remove('text-[#6B635B]');
+startQuiz(btn.dataset.qmode);
+});
+});
+document.getElementById('searchInput').addEventListener('input', e => {
+state.searchQuery = e.target.value;
+renderAll();
+});
+document.getElementById('bookmarkFilterBtn').addEventListener('click', () => {
+state.onlyBookmarks = !state.onlyBookmarks;
+document.getElementById('bookmarkBanner').classList.toggle('hidden', !state.onlyBookmarks);
+renderAll();
+});
+document.getElementById('clearBookmarkFilterBtn').addEventListener('click', () => {
+state.onlyBookmarks = false;
+document.getElementById('bookmarkBanner').classList.add('hidden');
+renderAll();
+});
+function renderAll() {
+renderVowels();
+renderConsonants();
+renderBatchim();
+renderClassification();
+renderVocab();
+}
+// Init
+saveBookmarks();
+renderAll();
+startQuiz('mixed');
+</script>
 </body>
 </html>
